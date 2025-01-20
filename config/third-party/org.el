@@ -11,46 +11,6 @@
   ;; variables
   ;;
 
-  (defvar my-org-root-dir "~/Documents/Syncthing/Org/")
-  (defvar my-org-dir my-org-root-dir)
-  (defvar my-org-publish-dir (concat my-org-root-dir "Publish/"))
-  ;; (defvar my-org-meta-dir (concat root-dir "Meta/"))
-  ;; (defvar my-org-archive-dir (concat my-org-meta-dir "Archive/"))
-  (defvar my-org-journal-dir (concat my-org-root-dir "Journal/"))
-  (defvar my-org-diary-file (concat my-org-root-dir "Diary/Diary.org"))
-
-  (defvar my-org-agenda-files (list
-			       "~/Documents/Syncthing/Org/Agenda/Inbox.org"
-			       "~/Documents/Syncthing/Org/Agenda/Agenda.org"
-			       "~/Documents/Syncthing/Org/Agenda/Todo.org"
-			       "~/Documents/Syncthing/Org/Agenda/Work.org"
-
-			       "~/Documents/Syncthing/Org/Travel.org"
-
-			       "~/Documents/Syncthing/Org/Lists/Games.org"
-			       "~/Documents/Syncthing/Org/Lists/Manga.org"
-			       "~/Documents/Syncthing/Org/Lists/Books.org"
-
-			       my-org-journal-dir
-			       )
-    )
-
-  (defvar my-org-contacts-files '("~/Documents/Syncthing/Org/Contacts/Work.org"))
-
-  (defvar my-org-attach-id-dir "~/Documents/Syncthing/Org/Data")
-
-  (defvar my-org-ref-default-bibliography "~/Documents/Syncthing/Org/Bibliography/Books.bib")
-  (defvar my-org-ref-bibliography-notes "~/Documents/Syncthing/Org/Bibliography/Notes/Assorted.org")
-
-  (defvar my-bibtex-completion-bibliography-list '("~/Documents/Syncthing/Org/Bibliography/Books.bib"))
-  (defvar my-bibtex-completion-notes-path "~/Documents/Syncthing/Org/Bibliography/Notes")
-
-  (defvar my-citar-notes-paths '("~/Documents/Syncthing/Org/Bibliography/Notes"))
-
-  (defvar my-org-roam-directory "~/Documents/Syncthing/Org/Brain")
-
-  (defvar my-org-images-directory "~/Documents/Syncthing/Org/ImagesDirectory/")
-
 
   ;;
   ;; directories

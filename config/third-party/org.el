@@ -704,6 +704,7 @@
 
 (use-package ol
   :defer
+  :straight nil
   :ensure nil
   :after (org)
   :config
@@ -720,6 +721,19 @@
   (setq org-src-preserve-indentation t)
   (setq org-src-tab-acts-natively t)
   (setq org-edit-src-content-indentation 0)
+
+  (setq org-src-lang-modes '(
+			     ("C"      . c)
+			     ("C++"    . c++)
+			     ("bash"   . sh)
+			     ("cpp"    . c++)
+			     ("elisp"  . emacs-lisp)
+			     ("ocaml"  . tuareg)
+			     ("shell"  . sh)
+			     ("vimrc"  . vimrc)
+			     ("python" . python)
+			     ("lua"    . lua-ts)
+			     ))
   )
 
 (use-package org-id
@@ -838,6 +852,11 @@ file which do not already have one."
 (use-package org-cliplink
   :after (org org-capture))
 
+(use-package org-contrib
+  :ensure t
+  :after (org)
+  )
+
 (use-package ox
   :straight nil
   :after (org)
@@ -856,6 +875,7 @@ file which do not already have one."
   (org-ascii-headline-spacing (quote (1 . 1)))
   (org-html-htmlize-output-type 'css)
   (org-html-validation-link nil)
+  (org-html-postamble nil)
 
   (org-export-backends '(ascii html icalendar latex md))
   (org-export-latex-classes
@@ -891,19 +911,20 @@ file which do not already have one."
   )
 
 (use-package ox-extra
-  :after (org ox)
+  :after (org)
   :straight org-contrib
   :ensure nil
   :config
   ;; if headline has ignore tag, dont export it. But export its contents!
-  (ox-extras-activate '(ignore-headlines))
+  (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
   )
 
-(use-package ox-gfm
-  :after (org ox)
-  :straight org-contrib
-  :ensure nil
-  )
+;; NOTE: this one doesn't seem to be active anymore
+;; (use-package ox-gfm
+;;   :after (org ox)
+;;   :straight org-contrib
+;;   :ensure nil
+;;   )
 
 (use-package ox-pandoc
   :after (org)
@@ -936,7 +957,6 @@ file which do not already have one."
      (emacs-lisp . t)
      (plantuml   . t)
      (shell      . t)
-     (php        . t)
      ))
 
   (remove-hook 'kill-emacs-hook 'org-babel-remove-temporary-directory)

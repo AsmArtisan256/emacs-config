@@ -92,3 +92,8 @@
 
 ;; LaTeX
 (load (xah-get-fullpath "third-party/auctex.el"))
+
+;; other modes
+(load (xah-get-fullpath "third-party/vimrc-mode.el"))
+(load (xah-get-fullpath "third-party/rust-mode.el"))
+(load (xah-get-fullpath "third-party/nasm-mode.el"))

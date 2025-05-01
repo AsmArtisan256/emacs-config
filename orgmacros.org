@@ -1,0 +1,6 @@
+# -*- mode: org; -*-
+
+#+MACRO: newline (eval "\n")
+#+MACRO: website_warning1 #+BEGIN_EXPORT html {{{newline}}} <p class="warning">$1</p>{{{newline}}}
+
+#+MACRO: website_warning @@html:<p class="warning">@@{{{newline}}}$1{{{newline}}}@@html:</p>@@

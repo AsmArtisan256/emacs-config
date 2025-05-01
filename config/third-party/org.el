@@ -702,6 +702,14 @@
   (org-modules '(org-habit))
   )
 
+(use-package ol
+  :defer
+  :ensure nil
+  :after (org)
+  :config
+  (setq org-link-keep-stored-after-insertion t)
+  )
+
 (use-package org-src
   :straight nil
   :after (org)
@@ -891,6 +899,12 @@ file which do not already have one."
   (ox-extras-activate '(ignore-headlines))
   )
 
+(use-package ox-gfm
+  :after (org ox)
+  :straight org-contrib
+  :ensure nil
+  )
+
 (use-package ox-pandoc
   :after (org)
   :preface
@@ -1073,50 +1087,6 @@ file which do not already have one."
 
 (use-package oc-csl
   :straight nil)
-
-;; ;; TODO: this stuff is causing some errors...
-;; (use-package org-roam
-;;   :after (org)
-;;   :ensure t
-;;   :custom
-;;   (org-roam-directory "~/Documents/Org")
-;;   (org-roam-db-location "~/.config/emacs/org-roam.db")
-;;   (org-roam-completion-everywhere t)
-;;   :bind (("C-c n l" . org-roam-buffer-toggle)
-;;	 ("C-c n f" . org-roam-node-find)
-;;	 ("C-c n i" . org-roam-node-insert))
-;;   :config
-;;   ;; Roam is always one level deep in my org-directory
-;;   (setq org-id-link-to-org-use-id t)
-;;   ;; (add-to-list 'display-buffer-alist
-;;   ;;              '(("\\*org-roam\\*"
-;;   ;;                 (display-buffer-in-direction)
-;;   ;;                 (direction . right)
-;;   ;;                 (window-width . 0.33)
-;;   ;;                 (window-height . fit-window-to-buffer))))
-
-;;   (setq org-roam-capture-templates
-;;	'(("d" "default" plain "%?"
-;;	   :immediate-finish t
-;;	   :if-new (file+head "${slug}.org"
-;;			      "#+TITLE: ${title}\n#+hugo_lastmod: Time-stamp: <>\n\n")
-;;	   :unnarrowed t)
-;;	  ("t" "temp" plain "%?"
-;;	   :if-new(file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-;;			     "#+TITLE: ${title}\n#+hugo_lastmod: Time-stamp: <>\n\n")
-;;	   :immediate-finish t
-;;	   :unnarrowed t)
-;;	  ("p" "private" plain "%?"
-;;	   :if-new (file+head "${slug}-private.org"
-;;			      "#+TITLE: ${title}\n")
-;;	   :immediate-finish t
-;;	   :unnarrowed t)))
-
-;;   (org-roam-setup)
-;;   (org-roam-db-autosync-mode)
-
-;;   ;; (setq org-id-extra-files (org-roam--list-files org-roam-directory))
-;;   )
 
 ;; TODO: verify if actually needed, at all.
 (use-package org-journal

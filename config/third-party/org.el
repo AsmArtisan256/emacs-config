@@ -866,6 +866,7 @@ file which do not already have one."
   (org-export-with-section-numbers nil)
   (org-export-with-date nil)
   (org-export-time-stamp-file nil)
+  (org-export-with-timestamps nil)
   (org-export-with-email t)
   (org-export-with-toc t)
   (org-export-headline-levels 8)
@@ -918,6 +919,7 @@ file which do not already have one."
   :config
   ;; if headline has ignore tag, dont export it. But export its contents!
   (ox-extras-activate '(ignore-headlines org-export-ignore-headlines))
+  (setq org-export-time-stamp-file nil)
   )
 
 ;; NOTE: this one doesn't seem to be active anymore

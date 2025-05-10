@@ -733,6 +733,7 @@
 			     ("vimrc"  . vimrc)
 			     ("python" . python)
 			     ("lua"    . lua-ts)
+			     ("php"    . php)
 			     ))
   )
 

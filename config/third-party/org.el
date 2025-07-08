@@ -1215,7 +1215,7 @@ file which do not already have one."
     (interactive)
     (setq org-download-heading-lvl nil)
     ;; (setq org-download-image-dir (concat "~/Documents/Org/ImagesDirectory/" (file-name-sans-extension (buffer-name))))
-    (if (string-prefix-p (expand-file-name "~/Documents/Projects/Projects-Personal/writeups/")
+    (if (string-prefix-p (expand-file-name "~/Documents/Projects/Projects-Personal/asmartisan256.github.io/")
 			 (expand-file-name default-directory))
 	(setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) "-img"))
       (setq org-download-image-dir (concat my-org-images-directory (file-name-sans-extension (buffer-name))))

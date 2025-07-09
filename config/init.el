@@ -65,7 +65,7 @@
 (load (xah-get-fullpath "third-party/undo-fu-session.el"))
 
 ;; completion, info, snippets, etc
-;; (load (xah-get-fullpath "third-party/tempel.el"))
+(load (xah-get-fullpath "third-party/tempel.el"))
 (load (xah-get-fullpath "third-party/corfu.el"))
 (load (xah-get-fullpath "third-party/vertico.el"))
 (load (xah-get-fullpath "third-party/marginalia.el"))

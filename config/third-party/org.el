@@ -59,6 +59,7 @@
   ;; selection
   (setq org-fast-tag-selection-single-key t)
   (setq org-use-fast-todo-selection t)
+  (setq org-treat-S-cursor-todo-selection-as-state-change nil)
   (setq org-support-shift-select 'always)
 
   ;; tags

@@ -21,9 +21,10 @@
     ;; (add-to-list 'completion-at-point-functions #'tempel-complete -1 'local)
     )
 
+  (add-hook 'conf-mode-hook 'tempel-setup-capf)
   (add-hook 'prog-mode-hook 'tempel-setup-capf)
   (add-hook 'text-mode-hook 'tempel-setup-capf)
-  ;; (add-hook 'org-mode-hook 'tempel-setup-capf)
+  (add-hook 'org-mode-hook 'tempel-setup-capf)
   )
 
 (use-package tempel-collection

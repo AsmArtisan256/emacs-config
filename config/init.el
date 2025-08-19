@@ -72,7 +72,7 @@
 (load (xah-get-fullpath "third-party/consult.el"))
 (load (xah-get-fullpath "third-party/orderless.el"))
 (load (xah-get-fullpath "third-party/embark.el"))
-;; (load (xah-get-fullpath "third-party/eglot.el"))
+(load (xah-get-fullpath "third-party/eglot.el"))
 
 ;; spell checking, errors, etc
 (load (xah-get-fullpath "third-party/jinx.el"))

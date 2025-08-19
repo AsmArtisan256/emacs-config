@@ -46,6 +46,10 @@
   (defvar straight-use-package-by-default)
   (setq straight-use-package-by-default t)
   (setq straight-repository-branch "develop")
+
+  (straight-use-package '(project :type built-in))
+  (straight-use-package '(xref :type built-in))
+  
   (require 'use-package)
 
   ;; Forces Custom to save all customizations in a separate file

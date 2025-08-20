@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package helpful
   :defer 1
   :config

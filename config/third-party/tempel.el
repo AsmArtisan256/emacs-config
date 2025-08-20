@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package tempel
   :bind (("M-+" . tempel-complete) ;; Alternative tempel-expand
 	 ("M-*" . tempel-insert))

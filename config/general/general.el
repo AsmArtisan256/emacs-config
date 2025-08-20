@@ -1,7 +1,16 @@
+;; -*- lexical-binding: t; -*-
 ;; general settings - requires further organization
 
 ;; spaces instead of tabs
 (setq-default indent-tabs-mode nil)
+
+
+;; copy/paste stuff
+(setq-default kill-whole-line t
+              save-interprogram-paste-before-kill nil
+              mouse-yank-at-point t
+              select-enable-clipboard t
+              x-select-enable-clipboard t)
 
 (setq default-directory "~/"
       ;; always follow symlinks when opening files
@@ -24,13 +33,6 @@
       load-prefer-newer t
       kept-old-version 2
       kept-new-version 6
-
-      ;; copy/paste stuff
-      kill-whole-line t
-      save-interprogram-paste-before-kill t
-      mouse-yank-at-point t
-      select-enable-clipboard t
-      x-select-enable-clipboard t
 
       ;; final newline
       require-final-newline t

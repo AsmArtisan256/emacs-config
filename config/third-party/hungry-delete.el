@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package hungry-delete
   :diminish
   :config

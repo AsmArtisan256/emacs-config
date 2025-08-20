@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; Many pieces of this configuration were taken from many different places on the internet:
 ;; - http://xahlee.info/emacs/emacs/organize_your_dot_emacs.html
 ;; - https://github.com/andersmurphy
@@ -49,7 +51,7 @@
 
   (straight-use-package '(project :type built-in))
   (straight-use-package '(xref :type built-in))
-  
+
   (require 'use-package)
 
   ;; Forces Custom to save all customizations in a separate file

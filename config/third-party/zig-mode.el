@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package zig-mode
   :straight t
   :config

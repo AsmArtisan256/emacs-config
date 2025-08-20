@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package diff-hl
   :defer 1
   :hook

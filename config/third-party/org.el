@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; many thanks to Nicolas Rougier https://github.com/rougier/dotemacs/blob/master/dotemacs.org
 
 (use-package org

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; enable indent-tabs-mode when using c-mode
 
 (use-package cc-mode

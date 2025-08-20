@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package info-colors
   :defer 1
   :config

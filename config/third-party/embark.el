@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package embark
   :after (which-key)
   :demand t

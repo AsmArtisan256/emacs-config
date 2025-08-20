@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; UTF-8 stuff
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;; World clock (M-x world-clock)
 (setq display-time-world-list t)
 (setq zoneinfo-style-world-list ; M-x shell RET timedatectl list-timezones

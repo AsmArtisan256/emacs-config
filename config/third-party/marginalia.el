@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package marginalia
   :custom
   (marginalia-max-relative-age 0)

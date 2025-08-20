@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 ;; (global-set-key (kbd "M-z") 'zap-up-to-char)
@@ -17,9 +19,16 @@
 ;; completion
 (global-set-key (kbd "C-SPC") 'completion-at-point)
 
+;; backwards delete word without polluting clipboard
+(defun backward-delete-word (arg)
+  "Delete characters backward until encountering the beginning of a word.
+With argument ARG, do this that many times."
+  (interactive "p")
+  (delete-region (point) (progn (backward-word arg) (point))))
+(global-set-key (kbd "C-<backspace>") 'backward-delete-word)
+
 ;; unsetting
 (global-unset-key [mouse-2])
-
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
 (global-unset-key (kbd "C-h h"))

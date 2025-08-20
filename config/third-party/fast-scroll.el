@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (setq fast-but-imprecise-scrolling t
       jit-lock-defer-time 0)
 

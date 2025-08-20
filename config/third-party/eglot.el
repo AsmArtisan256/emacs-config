@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; eglot
 (use-package eglot
   :straight (:type built-in)

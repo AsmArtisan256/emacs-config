@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package ligature
   :straight (:host github :repo "mickeynp/ligature.el")
   :defer 1

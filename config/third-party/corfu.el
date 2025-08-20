@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package corfu
   :straight (corfu :files (:defaults "extensions/*")
 		   :includes (corfu-info corfu-history))

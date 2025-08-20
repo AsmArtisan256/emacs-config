@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package nasm-mode
   :straight t
   :config

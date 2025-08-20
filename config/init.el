@@ -1,11 +1,12 @@
+;; -*- lexical-binding: t; -*-
 (require 'package)
 (package-initialize)
 
 (defun xah-get-fullpath (@file-relative-path)
   (concat (file-name-directory (or load-file-name buffer-file-name)) @file-relative-path))
 
-					; (debug-on-variable-change 'org-directory)
-					; (debug-on-variable-change 'org-cite-global-bibliography)
+;; (debug-on-variable-change 'org-directory)
+;; (debug-on-variable-change 'org-cite-global-bibliography)
 
 ;;
 ;; general
@@ -23,8 +24,10 @@
 ;; internal
 ;;
 (load (xah-get-fullpath "internal/uniquify.el"))
+;; NOTE: IF EMACS HANGS, ITS SAVEHIST'S FAULT!!! (Probably)
 (load (xah-get-fullpath "internal/savehist.el"))
 (load (xah-get-fullpath "internal/icomplete.el"))
+(load (xah-get-fullpath "internal/whitespace.el"))
 
 ;;
 ;; internal programming
@@ -62,7 +65,6 @@
 
 ;; editing
 (load (xah-get-fullpath "third-party/hungry-delete.el"))
-(load (xah-get-fullpath "third-party/whitespace-cleanup.el"))
 (load (xah-get-fullpath "third-party/multiple-cursors.el"))
 
 (load (xah-get-fullpath "third-party/avy.el"))

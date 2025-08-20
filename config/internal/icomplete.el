@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package icomplete
   :custom
   (read-file-name-completion-ignore-case t)

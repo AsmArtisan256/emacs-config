@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; I guess this doesn't work if the buffer is from dired
 ;;
 ;; "dired buffers don't set buffer-file-name and thus the call to remove-if-not

@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package orderless
   :custom
   ;; Use backslash for literal space

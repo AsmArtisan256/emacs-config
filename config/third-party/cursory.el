@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (use-package cursory
   :config
   (setq cursory-presets

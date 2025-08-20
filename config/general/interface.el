@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (setq scroll-conservatively 101
       scroll-preserve-screen-position 1
       mouse-wheel-follow-mouse t

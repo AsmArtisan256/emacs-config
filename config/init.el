@@ -14,9 +14,8 @@
 (load (xah-get-fullpath "general/theme.el"))
 (load (xah-get-fullpath "general/interface.el"))
 (load (xah-get-fullpath "general/font.el"))
-
 (load (xah-get-fullpath "general/mappings.el"))
-
+(load (xah-get-fullpath "general/functions.el"))
 (load (xah-get-fullpath "general/world-clock.el"))
 
 ;;

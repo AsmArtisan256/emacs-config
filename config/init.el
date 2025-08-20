@@ -10,6 +10,7 @@
 ;;
 ;; general
 ;;
+
 (load (xah-get-fullpath "general/general.el"))
 (load (xah-get-fullpath "general/theme.el"))
 (load (xah-get-fullpath "general/interface.el"))
@@ -24,6 +25,11 @@
 (load (xah-get-fullpath "internal/uniquify.el"))
 (load (xah-get-fullpath "internal/savehist.el"))
 (load (xah-get-fullpath "internal/icomplete.el"))
+
+;;
+;; internal programming
+;;
+(load (xah-get-fullpath "internal/cmode.el"))
 
 ;;
 ;; third party

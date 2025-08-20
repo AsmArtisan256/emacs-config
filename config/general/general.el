@@ -1,5 +1,8 @@
 ;; general settings - requires further organization
 
+;; spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 (setq default-directory "~/"
       ;; always follow symlinks when opening files
       vc-follow-symlinks t
@@ -12,9 +15,6 @@
       confirm-kill-processes nil
       ;; ask if local variables are safe once.
       enable-local-variables t
-
-      ;; spaces instead of tabs
-      indent-tabs-mode nil
 
       ;; backups
       backup-directory-alist `(("." . "~/.config/emacs/backups"))

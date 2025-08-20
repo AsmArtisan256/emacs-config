@@ -57,11 +57,9 @@
 	       '((c++-mode c-mode cc-mode)
 		 "clangd"
 		 "-j=2"
-		 "--malloc-trim"
 		 "--background-index"
 		 "--clang-tidy"
 		 "--completion-style=bundled"
 		 "--header-insertion=never"
-		 "--header-insertion-decorators"
-		 "--cross-file-rename"))
+		 "--header-insertion-decorators"))
   )

@@ -40,6 +40,9 @@
 (load (xah-get-fullpath "third-party/dashboard.el"))
 (load (xah-get-fullpath "third-party/fast-scroll.el"))
 
+;; expand region
+(load (xah-get-fullpath "third-party/expand-region.el"))
+
 ;; search
 (load (xah-get-fullpath "third-party/ctrlf.el"))
 (load (xah-get-fullpath "third-party/rg.el"))

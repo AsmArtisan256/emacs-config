@@ -834,16 +834,16 @@ file which do not already have one."
   :straight nil
   :after (org)
   :preface
-  (defun rg/date-sha256 ()
+  (defun my/date-sha256 ()
     (secure-hash 'sha256 (format-time-string "%Y-%m-%d %a %H:%M"))
     )
 
-  (defun rg/get-journal-file-year ()
+  (defun my/get-journal-file-year ()
     (let ((yearly-name (format-time-string "%Y")))
       (expand-file-name (concat my-org-journal-dir yearly-name ".org")))
     )
 
-  (defun rg/org-capture-agenda-inbox ()
+  (defun my/org-capture-agenda-inbox ()
     (interactive)
     ;; (call-interactively 'org-store-link)
     (org-capture nil "a")

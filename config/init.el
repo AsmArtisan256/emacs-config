@@ -39,7 +39,7 @@
 ;;
 
 ;; theme related (theme.el already has modus-theme)
-(load (xah-get-fullpath "third-party/pulsar.el"))
+;; (load (xah-get-fullpath "third-party/pulsar.el"))
 (load (xah-get-fullpath "third-party/lin.el"))
 (load (xah-get-fullpath "third-party/cursory.el"))
 

@@ -2,22 +2,22 @@
 
 (use-package corfu
   :straight (corfu :files (:defaults "extensions/*")
-		   :includes (corfu-info corfu-history))
+		   :includes (corfu-info corfu-history corfu-popupinfo))
   :ensure t
   :demand t
-  ;; :bind (:map corfu-map
-  ;;	      ("<escape>". corfu-quit)
-  ;;	      ("<return>" . corfu-insert)
-  ;;	      ("M-d" . corfu-info-documentation)
-  ;;	      ("M-l" . 'corfu-info-location)
-  ;;	      ("TAB" . corfu-next)
-  ;;	      ([tab] . corfu-next)
-  ;;	      ("S-TAB" . corfu-previous)
-  ;;	      ([backtab] . corfu-previous)
-  ;;	      ("M-n" . corfu-popupinfo-scroll-up)
-  ;;	      ("M-p" . corfu-popupinfo-scroll-down)
-  ;;	      ([remap corfu-show-documentation] . corfu-popupinfo-toggle)
-  ;;	      )
+  :bind (:map corfu-map
+	      ("<escape>". corfu-quit)
+              ;;	      ("<return>" . corfu-insert)
+              ;;	      ("M-d" . corfu-info-documentation)
+              ;;	      ("M-l" . 'corfu-info-location)
+              ;;	      ("TAB" . corfu-next)
+              ;;	      ([tab] . corfu-next)
+              ;;	      ("S-TAB" . corfu-previous)
+              ;;	      ([backtab] . corfu-previous)
+              ;;	      ("M-n" . corfu-popupinfo-scroll-up)
+              ;;	      ("M-p" . corfu-popupinfo-scroll-down)
+              ;;	      ([remap corfu-show-documentation] . corfu-popupinfo-toggle)
+	      )
   :custom
   (corfu-auto nil)
 
@@ -31,8 +31,8 @@
   (corfu-scroll-margin 4)
   (corfu-cycle t)
 
-  (corfu-quit-at-boundary nil)
-  (corfu-preselect-first t)
+  (corfu-quit-no-match 'separator)
+  (corfu-preselect-first nil)
 
   (tab-always-indent 'complete)
   (completion-cycle-threshold nil)
@@ -57,6 +57,10 @@
   (kind-icon-blend-frac 0.08)
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter) ; Enable `kind-icon'
+
+  ;; NOTE: use this to not have issues with hidden completion items
+  ;; because of icon height fucking up completion
+  (setq kind-icon-default-style `(:padding -1 :stroke 0 :margin 0 :radius 0 :scale 1.0 :height 0.85))
 
   ;; Add hook to reset cache so the icon colors match my theme
   ;; NOTE 2022-02-05: This is a hook which resets the cache whenever I switch
@@ -88,4 +92,6 @@
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)
+  :config
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   )

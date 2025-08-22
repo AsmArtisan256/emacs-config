@@ -22,9 +22,16 @@
    ((c-mode c++-mode python-mode zig-mode) . eglot-ensure)
    )
   :custom
+  ;; performance stuff
+  (fset #'jsonrpc--log-event #'ignore)
+  ;; disable events buffer - SO ANNOYING!!!1!
+  (eglot-events-buffer-size 0)
+
+  ;; for non project files
+  (eglot-extend-to-xref t)
   (eglot-auto-reconnect t)
-  ;; (eglot-stay-out-of (eldoc-documentation-strategy))
-  (eglot-connect-timeout 120)
+  (eglot-connect-timeout nil)
+  (eglot-sync-connect nil)
   :config
   (setq completion-category-overrides '((eglot (styles orderless))
 					(eglot-capf (styles orderless))))
@@ -40,22 +47,12 @@
 
     ;; disable inlay hints
     (eglot-inlay-hints-mode -1)
-
-    ;; eldoc box
-    ;; (eldoc-box-hover-at-point-mode t)
     )
 
   (add-hook 'eglot-managed-mode-hook 'my/lsp-mode)
 
-  ;; disable events buffer - SO ANNOYING!!!1!
-  (setq-default eglot-events-buffer-size 0)
-
   ;; another way of disabling inlay hints
   (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
-
-  ;; activate Eglot in cross-referenced non-project files
-  ;; is this that useful though?
-  (setq eglot-extend-to-xref t)
 
   ;; server programs
   (add-to-list 'eglot-server-programs

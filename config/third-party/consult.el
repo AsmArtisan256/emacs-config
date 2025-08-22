@@ -9,6 +9,7 @@
   ("C-c h" . consult-history)
   ("C-c m" . consult-mode-command)
   ("C-c k" . consult-kmacro)
+  ("C-c /" . consult-ripgrep)
   :custom
   (consult-project-root-function #'projectile-project-root)
   (consult-narrow-key "<"))

@@ -1,10 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package embark
-  :after (which-key)
+  :after (vertico)
   :demand t
   :bind
-  (("C-." . embark-act)         ;; pick some com fortable binding
+  (("C-." . embark-act)         ;; pick some comfortable binding
    ("C-:" . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
@@ -50,7 +50,7 @@ the completing-read prompter."
   :config
   ;; Show the Embark target at point via Eldoc.  You may adjust the Eldoc
   ;; strategy, if you want to see the documentation from multiple providers.
-  (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
   ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
 
   ;; Hide the mode line of the Embark live/completions buffers

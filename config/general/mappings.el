@@ -23,6 +23,16 @@ With argument ARG, do this that many times."
   (delete-region (point) (progn (backward-word arg) (point))))
 (global-set-key (kbd "C-<backspace>") 'backward-delete-word)
 
+;; Move point to first non-whitespace character or beginning-of-line.
+(defun smart-beginning-of-line ()
+  "Move point to first non-whitespace character or beginning-of-line."
+  (interactive "^")
+  (let ((oldpos (point)))
+    (back-to-indentation)
+    (and (= oldpos (point))
+         (beginning-of-line))))
+(global-set-key (kbd "<home>") 'smart-beginning-of-line)
+
 ;; unsetting
 (global-unset-key [mouse-2])
 (global-unset-key (kbd "C-z"))

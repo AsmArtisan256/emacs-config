@@ -44,9 +44,6 @@
       cursor-type 'box
       cursor-in-non-selected-windows t
 
-      ;; fill column
-      fill-column 80
-
       ;; other
       apropos-do-all t
       )
@@ -69,8 +66,6 @@
 ;; (add-hook 'prog-mode-hook 'subword-mode)
 ;; don't assume sentences end with two spaces after a period.
 (setq sentence-end-double-space nil)
-;; limit files to 80 columns. Controversial, I know.
-(setq-default fill-column 80)
 
 
 ;;
@@ -118,6 +113,3 @@
 
 ;; stuff about marks dunno lmao
 (transient-mark-mode 1)
-
-;; show fill column
-(display-fill-column-indicator-mode 1)

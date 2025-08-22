@@ -7,7 +7,7 @@
   :defer t
   :bind (("C-; a"   . eglot-code-actions)
 	 ("C-; r n" . eglot-rename)
-	 ("C-; e d" . eldoc)
+	 ("C-c k" . eldoc)
 	 ("C-; e f" . eglot-format)
 	 ("C-; e a" . eglot-code-actions)
 	 ("C-; e e" . flycheck-list-errors)
@@ -23,7 +23,7 @@
    )
   :custom
   (eglot-auto-reconnect t)
-  (eglot-stay-out-of (eldoc-documentation-strategy))
+  ;; (eglot-stay-out-of (eldoc-documentation-strategy))
   (eglot-connect-timeout 120)
   :config
   (setq completion-category-overrides '((eglot (styles orderless))
@@ -40,6 +40,9 @@
 
     ;; disable inlay hints
     (eglot-inlay-hints-mode -1)
+
+    ;; eldoc box
+    ;; (eldoc-box-hover-at-point-mode t)
     )
 
   (add-hook 'eglot-managed-mode-hook 'my/lsp-mode)

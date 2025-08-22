@@ -3,7 +3,8 @@
 (package-initialize)
 
 (defun xah-get-fullpath (@file-relative-path)
-  (concat (file-name-directory (or load-file-name buffer-file-name)) @file-relative-path))
+  (concat (file-name-directory (or load-file-name buffer-file-name))
+          @file-relative-path))
 
 ;; (debug-on-variable-change 'org-directory)
 ;; (debug-on-variable-change 'org-cite-global-bibliography)
@@ -28,6 +29,7 @@
 (load (xah-get-fullpath "internal/savehist.el"))
 (load (xah-get-fullpath "internal/icomplete.el"))
 (load (xah-get-fullpath "internal/whitespace.el"))
+(load (xah-get-fullpath "internal/fill-column.el"))
 
 ;;
 ;; internal programming
@@ -59,6 +61,9 @@
 (load (xah-get-fullpath "third-party/unicode-fonts.el"))
 (load (xah-get-fullpath "third-party/mixed-pitch.el"))
 (load (xah-get-fullpath "third-party/ligature.el"))
+
+;; eldoc
+(load (xah-get-fullpath "third-party/eldoc.el"))
 
 ;; (load (xah-get-fullpath "third-party/no-littering.el"))
 (load (xah-get-fullpath "third-party/gcmh.el"))

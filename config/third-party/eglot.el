@@ -65,3 +65,24 @@
 		 "--header-insertion=never"
 		 "--header-insertion-decorators"))
   )
+
+;; for C/C++ definitions
+(use-package eglot-inactive-regions
+  :straight t
+  :after (eglot)
+  :custom
+  (eglot-inactive-regions-style 'darken-foreground)
+  (eglot-inactive-regions-opacity 0.4)
+  :config
+  (eglot-inactive-regions-mode 1)
+  )
+
+(use-package eglot-hierarchy
+  :straight (:host github :repo "dolmens/eglot-hierarchy")
+  :after (eglot)
+  )
+
+(use-package consult-eglot
+  :after consult eglot
+  :bind (:map eglot-mode-map
+              ("C-M-." . consult-eglot-symbols)))

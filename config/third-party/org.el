@@ -138,16 +138,16 @@
 	  ;; (sequence "TOREAD(t)" "READING(r!)" "WAITING(w@/!)" "|" "DONE(d!)")
 	  ))
 
-  (defun rg/string-equal-to-any (str)
+  (defun my/string-equal-to-any (str)
     (let ((string-list '("STARTED")))
       (member str string-list)))
 
-  (defun rg/log-todo-next-creation-date (&rest ignore)
+  (defun my/log-todo-next-creation-date (&rest ignore)
     "Log second-phase creation time in the property drawer under the key 'ACTIVATED'"
-    (when (and (rg/string-equal-to-any (org-get-todo-state))
+    (when (and (my/string-equal-to-any (org-get-todo-state))
 	       (not (org-entry-get nil "ACTIVATED")))
       (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
-  (add-hook 'org-after-todo-state-change-hook #'rg/log-todo-next-creation-date)
+  (add-hook 'org-after-todo-state-change-hook #'my/log-todo-next-creation-date)
 
   ;;
   ;; checkbox logging

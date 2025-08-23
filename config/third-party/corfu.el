@@ -34,15 +34,17 @@
   (corfu-quit-no-match 'separator)
   (corfu-preselect-first nil)
 
-  (tab-always-indent 'complete)
-  (completion-cycle-threshold nil)
-
   (corfu-echo-documentation nil)
 
   ;; popupinfo
   (corfu-popupinfo-delay 0.5)
   (corfu-popupinfo-max-width 70)
   (corfu-popupinfo-max-height 20)
+
+  ;; completion
+  (tab-always-indent 'complete)
+  (completion-cycle-threshold nil)
+  (completions-detailed t)
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)

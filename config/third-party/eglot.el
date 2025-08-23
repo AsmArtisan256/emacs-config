@@ -22,8 +22,6 @@
    ((c-mode c++-mode python-mode zig-mode) . eglot-ensure)
    )
   :custom
-  ;; performance stuff
-  (fset #'jsonrpc--log-event #'ignore)
   ;; disable events buffer - SO ANNOYING!!!1!
   (eglot-events-buffer-size 0)
 
@@ -33,6 +31,9 @@
   (eglot-connect-timeout nil)
   (eglot-sync-connect nil)
   :config
+  ;; performance boost
+  (fset #'jsonrpc--log-event #'ignore)
+
   (setq completion-category-overrides '((eglot (styles orderless))
 					(eglot-capf (styles orderless))))
 

@@ -33,6 +33,9 @@ With argument ARG, do this that many times."
          (beginning-of-line))))
 (global-set-key (kbd "<home>") 'smart-beginning-of-line)
 
+;; minibuffer
+(keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete)
+
 ;; unsetting
 (global-unset-key [mouse-2])
 (global-unset-key (kbd "C-z"))

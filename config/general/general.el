@@ -4,7 +4,6 @@
 ;; spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
-
 ;; copy/paste stuff
 (setq-default kill-whole-line t
               save-interprogram-paste-before-kill nil
@@ -25,15 +24,6 @@
       ;; ask if local variables are safe once.
       enable-local-variables t
 
-      ;; backups
-      backup-directory-alist `(("." . "~/.config/emacs/backups"))
-      create-lockfiles nil
-      backup-by-copying t
-      delete-old-versions t
-      load-prefer-newer t
-      kept-old-version 2
-      kept-new-version 6
-
       ;; final newline
       require-final-newline t
 
@@ -48,6 +38,12 @@
       apropos-do-all t
       )
 
+;; window move
+(windmove-default-keybindings 'meta)
+
+;; Make switching buffers more consistent
+(setopt switch-to-buffer-obey-display-actions t)
+
 (setq-default
  ;; regex
  ;; regexp to match text at start of line that constitutes indentation
@@ -57,6 +53,18 @@
  ;; regexp describing the end of a sentence
  sentence-end "\\([。、！？]\\|……\\|[,.?!][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*"
  )
+
+;;
+;; backup
+;;
+(setq-default backup-directory-alist `(("." . "~/.config/emacs/backups"))
+              create-lockfiles nil
+              backup-by-copying t
+              delete-old-versions t
+              load-prefer-newer t
+              kept-old-version 2
+              kept-new-version 6
+              )
 
 ;;
 ;; editing
@@ -89,9 +97,6 @@
 ;; autopair
 (electric-pair-mode 1)
 
-;; refresh a buffer if changed on disk
-(global-auto-revert-mode 1)
-
 ;; overwrite text when selected
 (delete-selection-mode 1)
 
@@ -107,3 +112,9 @@
 
 ;; stuff about marks dunno lmao
 (transient-mark-mode 1)
+
+;; Automatically reread from disk if the underlying file changes
+(setopt auto-revert-avoid-polling t)
+(setopt auto-revert-interval 5)
+(setopt auto-revert-check-vc-info t)
+(global-auto-revert-mode 1)

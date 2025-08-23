@@ -5,7 +5,7 @@
 
 (use-package fontaine
   :config
-  (setq x-underline-at-descent-line nil)
+  (setq x-underline-at-descent-line t)
 
   ;; And this is for Emacs28.
   (setq-default text-scale-remap-header-line t)

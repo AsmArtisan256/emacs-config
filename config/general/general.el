@@ -105,11 +105,5 @@
 ;; treat as subword globally
 (global-subword-mode 1)
 
-;; buffer size in modeline
-(size-indication-mode 1)
-
-;; column number in modeline
-(column-number-mode 1)
-
 ;; stuff about marks dunno lmao
 (transient-mark-mode 1)

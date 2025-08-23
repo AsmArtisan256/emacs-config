@@ -45,9 +45,16 @@
 (load (xah-get-fullpath "third-party/lin.el"))
 (load (xah-get-fullpath "third-party/cursory.el"))
 
+;; modeline
+(load (xah-get-fullpath "third-party/modeline.el"))
+
+;; projectile
 (load (xah-get-fullpath "third-party/projectile.el"))
 
+;; dashboard
 (load (xah-get-fullpath "third-party/dashboard.el"))
+
+;; scroll options
 (load (xah-get-fullpath "third-party/fast-scroll.el"))
 
 ;; expand region
@@ -90,6 +97,7 @@
 (load (xah-get-fullpath "third-party/eglot.el"))
 
 ;; spell checking, errors, etc
+(load (xah-get-fullpath "third-party/flymake.el"))
 (load (xah-get-fullpath "third-party/jinx.el"))
 
 ;; colors and help stuff

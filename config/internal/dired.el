@@ -48,7 +48,8 @@
           ("\\.\\(?:xcf\\)\\'" "gimp")
           ("\\.\\(?:mp4\\|mp3\\|mkv\\|avi\\|flv\\|ogv\\)\\(?:\\.part\\)?\\'"
            "mpv")
-          ("\\.html?\\'" "firefox")))
+          ("\\.\\(?:html\\|svg\\)\\'" "firefox")
+          ))
 
 (define-key dired-mode-map "!" 'dired-do-async-shell-command)
 (define-key dired-mode-map "&" 'dired-start-process)

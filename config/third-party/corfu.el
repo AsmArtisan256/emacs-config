@@ -2,11 +2,11 @@
 
 (use-package corfu
   :straight (corfu :files (:defaults "extensions/*")
-		   :includes (corfu-info corfu-history corfu-popupinfo))
+		               :includes (corfu-info corfu-history corfu-popupinfo))
   :ensure t
   :demand t
   :bind (:map corfu-map
-	      ("<escape>". corfu-quit)
+	            ("<escape>". corfu-quit)
               ;;	      ("<return>" . corfu-insert)
               ;;	      ("M-d" . corfu-info-documentation)
               ;;	      ("M-l" . 'corfu-info-location)
@@ -17,7 +17,7 @@
               ;;	      ("M-n" . corfu-popupinfo-scroll-up)
               ;;	      ("M-p" . corfu-popupinfo-scroll-down)
               ;;	      ([remap corfu-show-documentation] . corfu-popupinfo-toggle)
-	      )
+	            )
   :custom
   (corfu-auto nil)
 
@@ -42,7 +42,7 @@
   (corfu-popupinfo-max-height 20)
 
   ;; completion
-  (tab-always-indent 'complete)
+  (tab-always-indent t)
   (completion-cycle-threshold nil)
   (completions-detailed t)
   :init
@@ -78,19 +78,19 @@
   :after (corfu tempel)
   :demand t
   :bind (("C-c . p" . completion-at-point)
-	 ("C-c . t" . complete-tag)
-	 ("C-c . d" . cape-dabbrev)
-	 ("C-c . h" . cape-history)
-	 ("C-c . f" . cape-file)
-	 ("C-c . k" . cape-keyword)
-	 ("C-c . s" . cape-symbol)
-	 ("C-c . a" . cape-abbrev)
-	 ("C-c . l" . cape-line)
-	 ("C-c . w" . cape-dict)
-	 ("C-c . \\" . cape-tex)
-	 ("C-c . _" . cape-tex)
-	 ("C-c . ^" . cape-tex)
-	 ("C-c . r" . cape-rfc1345))
+	       ("C-c . t" . complete-tag)
+	       ("C-c . d" . cape-dabbrev)
+	       ("C-c . h" . cape-history)
+	       ("C-c . f" . cape-file)
+	       ("C-c . k" . cape-keyword)
+	       ("C-c . s" . cape-symbol)
+	       ("C-c . a" . cape-abbrev)
+	       ("C-c . l" . cape-line)
+	       ("C-c . w" . cape-dict)
+	       ("C-c . \\" . cape-tex)
+	       ("C-c . _" . cape-tex)
+	       ("C-c . ^" . cape-tex)
+	       ("C-c . r" . cape-rfc1345))
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)

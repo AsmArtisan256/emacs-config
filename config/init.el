@@ -49,13 +49,13 @@
 (load (xah-get-fullpath "third-party/cursory.el"))
 
 ;; modeline
-(load (xah-get-fullpath "third-party/modeline.el"))
+;; (load (xah-get-fullpath "third-party/modeline.el"))
 
 ;; projectile
 (load (xah-get-fullpath "third-party/projectile.el"))
 
 ;; dashboard
-(load (xah-get-fullpath "third-party/dashboard.el"))
+;; (load (xah-get-fullpath "third-party/dashboard.el"))
 
 ;; scroll options
 (load (xah-get-fullpath "third-party/fast-scroll.el"))

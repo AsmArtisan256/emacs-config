@@ -1,15 +1,12 @@
 ;; -*- lexical-binding: t; -*-
 ;; general settings - requires further organization
 
-;; spaces instead of tabs
+;; tabs stuff
 (setq-default indent-tabs-mode nil)
-
-;; copy/paste stuff
-(setq-default kill-whole-line t
-              save-interprogram-paste-before-kill nil
-              mouse-yank-at-point t
-              select-enable-clipboard t
-              x-select-enable-clipboard t)
+(setq-default tab-width 2)
+(setq-default tab-stop-list (number-sequence 2 80 2))
+(setq c-basic-indent 2)
+(setq sh-basic-offset 2)
 
 (setq default-directory "~/"
       ;; always follow symlinks when opening files
@@ -55,18 +52,6 @@
  )
 
 ;;
-;; backup
-;;
-(setq-default backup-directory-alist `(("." . "~/.config/emacs/backups"))
-              create-lockfiles nil
-              backup-by-copying t
-              delete-old-versions t
-              load-prefer-newer t
-              kept-old-version 2
-              kept-new-version 6
-              )
-
-;;
 ;; editing
 ;;
 
@@ -74,17 +59,6 @@
 ;; (add-hook 'prog-mode-hook 'subword-mode)
 ;; don't assume sentences end with two spaces after a period.
 (setq sentence-end-double-space nil)
-
-
-;;
-;; dired
-;;
-
-;; clean up dired buffers
-(setq dired-kill-when-opening-new-dired-buffer t)
-
-;; use human-readable sizes in dired
-(setq-default dired-listing-switches "-alh")
 
 ;;
 ;; modes
@@ -118,3 +92,8 @@
 (setopt auto-revert-interval 5)
 (setopt auto-revert-check-vc-info t)
 (global-auto-revert-mode 1)
+
+;; code folding
+
+;; code folding
+(add-hook 'prog-mode-hook #'hs-minor-mode)

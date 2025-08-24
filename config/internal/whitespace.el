@@ -14,6 +14,10 @@
 (add-hook 'vterm-mode        'me/hide-trailing-whitespace)
 (add-hook 'shell-mode        'me/hide-trailing-whitespace)
 (add-hook 'minibuffer-setup  'me/hide-trailing-whitespace)
+(add-hook 'eww-mode          'me/hide-trailing-whitespace)
+(add-hook 'ielm-mode         'me/hide-trailing-whitespace)
+(add-hook 'gdb-mode          'me/hide-trailing-whitespace)
+(add-hook 'help-mode         'me/hide-trailing-whitespace)
 
 ;; delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)

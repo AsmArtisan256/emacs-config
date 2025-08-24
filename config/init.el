@@ -14,6 +14,8 @@
 ;;
 
 (load (xah-get-fullpath "general/general.el"))
+(load (xah-get-fullpath "general/backup.el"))
+(load (xah-get-fullpath "general/copypaste.el"))
 (load (xah-get-fullpath "general/theme.el"))
 (load (xah-get-fullpath "general/interface.el"))
 (load (xah-get-fullpath "general/font.el"))
@@ -24,6 +26,7 @@
 ;;
 ;; internal
 ;;
+(load (xah-get-fullpath "internal/dired.el"))
 (load (xah-get-fullpath "internal/uniquify.el"))
 ;; NOTE: IF EMACS HANGS, ITS SAVEHIST'S FAULT!!! (Probably)
 (load (xah-get-fullpath "internal/savehist.el"))

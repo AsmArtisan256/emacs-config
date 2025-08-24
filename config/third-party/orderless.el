@@ -30,7 +30,13 @@
 
   (setq orderless-matching-styles '(orderless-flex))
   (setq orderless-style-dispatchers
-	'(prefix-if-tilde
-	  regexp-if-slash
-	  literal-if-equal
-	  without-if-bang)))
+	      '(prefix-if-tilde
+	        regexp-if-slash
+	        literal-if-equal
+	        without-if-bang)))
+
+(use-package hotfuzz
+  :straight t
+  :custom
+  (completion-styles '(hotfuzz))
+  )

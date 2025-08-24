@@ -5,6 +5,8 @@
 ;; (global-set-key (kbd "M-z") 'zap-up-to-char)
 
 ;; duplicate line
+;; CAREFUL! This might be overriden by other modes
+;; verify with CARE!
 (global-set-key (kbd "C-d") 'duplicate-line)
 
 ;; delete whole line

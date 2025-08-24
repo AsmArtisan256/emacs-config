@@ -7,6 +7,15 @@
 ;; duplicate line
 (global-set-key (kbd "C-d") 'duplicate-line)
 
+;; delete whole line
+(defun delete-whole-line ()
+  (interactive)
+  (let ((beg (progn (forward-line 0)
+                    (point))))
+    (forward-line 1)
+    (delete-region beg (point))))
+(global-set-key (kbd "C-k") 'delete-whole-line)
+
 ;; move to other window
 (global-set-key (kbd "C-.") 'other-window)
 ;; move to previous window

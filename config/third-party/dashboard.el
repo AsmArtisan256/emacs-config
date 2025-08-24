@@ -14,6 +14,7 @@
   (dashboard-items '((recents  . 10)
                      (projects . 5)
                      (bookmarks . 5)))
+  (dashboard-projects-backend 'projectile)
   :config
   (dashboard-setup-startup-hook)
   )

@@ -7,10 +7,15 @@
   (projectile-enable-caching t)
   (projectile-sort-order 'recently-active)
   (projectile-indexing-method 'native)
-  (projectile-project-search-path '(("~/Documents/Projects/" . 1) ("~/Documents/Projects-Work/" . 1)))
+  (projectile-track-known-projects-automatically t)
+  (projectile-project-search-path '(("~/Documents/Projects/Projects-Personal" . 1)))
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
-  (projectile-save-known-projects)
+  (add-hook 'kill-emacs-hook #'projectile-save-known-projects)
+
+  (when (file-exists-p projectile-known-projects-file)
+    (projectile-load-known-projects))
+
   (projectile-mode +1)
   )

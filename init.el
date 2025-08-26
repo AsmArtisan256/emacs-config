@@ -53,6 +53,9 @@
   (straight-use-package '(xref :type built-in))
 
   (require 'use-package)
+  ;; init debug stuff
+  ;; (setq use-package-verbose t)
+  ;; (setq use-package-compute-statistics t)
 
   ;; Forces Custom to save all customizations in a separate file
   (setq custom-file "~/.config/emacs/config/custom.el")

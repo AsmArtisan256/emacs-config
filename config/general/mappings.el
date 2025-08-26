@@ -43,6 +43,7 @@ With argument ARG, do this that many times."
     (and (= oldpos (point))
          (beginning-of-line))))
 (global-set-key (kbd "<home>") 'smart-beginning-of-line)
+(global-set-key (kbd "<end>") 'move-end-of-line)
 
 ;; minibuffer
 (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete)

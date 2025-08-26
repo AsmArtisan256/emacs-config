@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package diff-hl
-  :defer 1
+  :straight t
   :hook
   (dired-mode . diff-hl-dired-mode-unless-remote)
   :config

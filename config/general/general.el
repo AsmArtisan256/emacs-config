@@ -94,6 +94,4 @@
 (global-auto-revert-mode 1)
 
 ;; code folding
-
-;; code folding
 (add-hook 'prog-mode-hook #'hs-minor-mode)

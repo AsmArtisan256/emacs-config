@@ -13,7 +13,8 @@
   (custom-set-faces
    ;; modeline customizations
    '(mode-line ((t (:box (:line-width 2 :color "#cba6f7") :background "#11111b" :foreground "#cdd6f4" :weight bold))))
-   '(mode-line-inactive ((t (:inherit mode-line :background "#11111b" :foreground "#cdd6f4" :weight bold))))
+   '(mode-line-active ((t (:box (:line-width 2 :color "#cba6f7") :background "#11111b" :foreground "#cdd6f4" :weight bold))))
+   '(mode-line-inactive ((t (:box (:line-width 2 :color "#cba6f7") :background "#11111b" :foreground "#cdd6f4" :weight bold))))
    ;; show paren match customizations
    '(show-paren-match ((t (:foreground "#f38ba8" :background "#45475a" :underline t :weight bold))))
    )

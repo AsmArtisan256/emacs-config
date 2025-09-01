@@ -119,10 +119,10 @@
   ;; refile
   ;;
   (setq org-refile-targets
-	'(
-	  ;; to expand...
-	  ("Work.org" :regexp . "\\(?:\\(?:Issue\\|Pull Request\\)s\\)")
-	  ))
+	      '(
+	        ;; to expand...
+	        ("Work.org" :regexp . "\\(?:\\(?:Issue\\|Pull Request\\)s\\)")
+	        ))
   (setq org-refile-use-outline-path 'file)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-refile-use-cache t)
@@ -132,11 +132,11 @@
   ;; todo
   ;;
   (setq org-todo-keywords
-	'(
-	  (sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)"
-		    "DELEGATED(g@/!)" "SOMEDAY(y)" "|" "DONE(d@)" "CANCELED(x@)")
-	  ;; (sequence "TOREAD(t)" "READING(r!)" "WAITING(w@/!)" "|" "DONE(d!)")
-	  ))
+	      '(
+	        (sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)"
+		                "DELEGATED(g@/!)" "SOMEDAY(y)" "|" "DONE(d@)" "CANCELED(x@)")
+	        ;; (sequence "TOREAD(t)" "READING(r!)" "WAITING(w@/!)" "|" "DONE(d!)")
+	        ))
 
   (defun my/string-equal-to-any (str)
     (let ((string-list '("STARTED")))
@@ -145,7 +145,7 @@
   (defun my/log-todo-next-creation-date (&rest ignore)
     "Log second-phase creation time in the property drawer under the key 'ACTIVATED'"
     (when (and (my/string-equal-to-any (org-get-todo-state))
-	       (not (org-entry-get nil "ACTIVATED")))
+	             (not (org-entry-get nil "ACTIVATED")))
       (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
   (add-hook 'org-after-todo-state-change-hook #'my/log-todo-next-creation-date)
 
@@ -158,18 +158,18 @@
     (save-excursion
       (org-previous-visible-heading 1)
       (while (not (= (org-current-level) 1))
-	(org-previous-visible-heading 1))
+	      (org-previous-visible-heading 1))
       (forward-line)
       (let* ((element (org-element-at-point))
-	     (logbookp (string= (org-element-property :drawer-name element)
-				"LOGBOOK")))
-	(if logbookp
-	    (goto-char (org-element-property :contents-end element))
-	  (org-insert-drawer nil "LOGBOOK"))
-	(insert "- \"" item "\" was checked ")
-	(org-insert-time-stamp (current-time) t t)
-	(when logbookp
-	  (insert "\n")))))
+	           (logbookp (string= (org-element-property :drawer-name element)
+				                        "LOGBOOK")))
+	      (if logbookp
+	          (goto-char (org-element-property :contents-end element))
+	        (org-insert-drawer nil "LOGBOOK"))
+	      (insert "- \"" item "\" was checked ")
+	      (org-insert-time-stamp (current-time) t t)
+	      (when logbookp
+	        (insert "\n")))))
 
   (defun org-checkbox-item ()
     "Retrieve the contents (text) of the item."
@@ -182,11 +182,11 @@
   (defun org-checklist-change-advice-function (&rest _)
     (when (org-at-item-checkbox-p)
       (let ((checkedp (save-excursion
-			(beginning-of-line)
-			(search-forward "[")
-			(looking-at-p "X"))))
-	(when checkedp
-	  (org-log-checklist-item (org-checkbox-item))))))
+			                  (beginning-of-line)
+			                  (search-forward "[")
+			                  (looking-at-p "X"))))
+	      (when checkedp
+	        (org-log-checklist-item (org-checkbox-item))))))
 
   (advice-add 'org-list-struct-apply-struct :after #'org-checklist-change-advice-function)
 
@@ -201,35 +201,35 @@
   (setq org-latex-create-formula-image-program 'dvipng)
 
   (setq org-latex-default-packages-alist
-	'(("T1" "fontenc" t)
-	  ("" "fixltx2e" nil)
-	  ("" "graphicx" t)
-	  ("" "longtable" nil)
-	  ("" "float" nil)
-	  ("" "wrapfig" nil)
-	  ("" "rotating" nil)
-	  ("normalem" "ulem" t)
-	  ("" "amsmath" t)
-	  ("" "textcomp" t)
-	  ("" "marvosym" t)
-	  ("" "wasysym" t)
-	  ("" "amssymb" t)
-	  ("" "hyperref" nil)
-	  "\\tolerance=1000"))
+	      '(("T1" "fontenc" t)
+	        ("" "fixltx2e" nil)
+	        ("" "graphicx" t)
+	        ("" "longtable" nil)
+	        ("" "float" nil)
+	        ("" "wrapfig" nil)
+	        ("" "rotating" nil)
+	        ("normalem" "ulem" t)
+	        ("" "amsmath" t)
+	        ("" "textcomp" t)
+	        ("" "marvosym" t)
+	        ("" "wasysym" t)
+	        ("" "amssymb" t)
+	        ("" "hyperref" nil)
+	        "\\tolerance=1000"))
   (setq org-latex-minted-options
-	'(("fontsize" "\\footnotesize")
-	  ("linenos" "true")
-	  ("xleftmargin" "0em")))
+	      '(("fontsize" "\\footnotesize")
+	        ("linenos" "true")
+	        ("xleftmargin" "0em")))
   (setq org-latex-pdf-process
-	'("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	  "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	  "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+	      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   (setq org-latex-src-block-backend 'minted)
   (setq org-latex-listings 'minted
-	org-latex-packages-alist '(("newfloat" "minted"))
-	org-latex-pdf-process
-	'("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	  "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+	      org-latex-packages-alist '(("newfloat" "minted"))
+	      org-latex-pdf-process
+	      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   )
 
 (use-package org-modern
@@ -266,7 +266,7 @@
   :ensure nil
   :config
   (add-to-list 'org-structure-template-alist
-	       '("S" . "src emacs-lisp"))
+	             '("S" . "src emacs-lisp"))
   )
 
 (use-package org-agenda
@@ -297,14 +297,14 @@
   (setq org-agenda-sticky t)
 
   (setq org-agenda-time-grid
-	'((daily today require-timed)
-	  (0700 0800 0900 1000 1100
-		1200 1300 1400 1500 1600
-		1700 1800 1900 2000 2100)
-	  " -----" "—————————————————"))
+	      '((daily today require-timed)
+	        (0700 0800 0900 1000 1100
+		            1200 1300 1400 1500 1600
+		            1700 1800 1900 2000 2100)
+	        " -----" "—————————————————"))
 
   (setq org-agenda-current-time-string
-	"—·—·—·—·—·—·—·—·— NOW")
+	      "—·—·—·—·—·—·—·—·— NOW")
 
   ;; (setq org-agenda-prefix-format
   ;;	'((agenda . " %i %-12:c%?-12t% s")
@@ -312,76 +312,76 @@
   ;;	  (tags   . " %i %-12:c")
   ;;	  (search . " %i %-12:c")))
   (setq org-agenda-prefix-format
-	'((agenda . "%i %?-12t%s")
-	  (todo .   "%i")
-	  (tags .   "%i")
-	  (search . "%i")))
+	      '((agenda . "%i %?-12t%s")
+	        (todo .   "%i")
+	        (tags .   "%i")
+	        (search . "%i")))
 
   (setq org-agenda-sorting-strategy
-	'((agenda deadline-down scheduled-down todo-state-up time-up
-		  habit-down priority-down category-keep)
-	  (todo   priority-down category-keep)
-	  (tags   timestamp-up priority-down category-keep)
-	  (search category-keep)))
+	      '((agenda deadline-down scheduled-down todo-state-up time-up
+		              habit-down priority-down category-keep)
+	        (todo   priority-down category-keep)
+	        (tags   timestamp-up priority-down category-keep)
+	        (search category-keep)))
 
   (setq org-agenda-custom-commands
-	'(
-	  ("g" "Get Things Done (GTD)"
-	   ((agenda ""
-		    ((org-agenda-skip-function
-		      '(org-agenda-skip-entry-if 'deadline))
-		     (org-deadline-warning-days 0)))
-	    (todo "STARTED|WAITING"
-		  ((org-agenda-skip-function
-		    '(org-agenda-skip-entry-if 'deadline))
-		   (org-agenda-prefix-format "  %i %-12:c [%e] ")
-		   (org-agenda-overriding-header "\nTasks\n")))
-	    (agenda nil
-		    ((org-agenda-entry-types '(:deadline))
-		     (org-agenda-format-date "")
-		     (org-deadline-warning-days 31)
-		     (org-agenda-skip-function
-		      '(org-agenda-skip-entry-if 'regexp "\\* DONE"))
-		     (org-agenda-overriding-header "\nDeadlines")))
-	    (tags-todo "inbox"
-		       ((org-agenda-prefix-format "  %?-12t% s")
-			(org-agenda-overriding-header "\nInbox\n")))
-	    (tags "CLOSED>=\"<today>\""
-		  ((org-agenda-overriding-header "\nCompleted today\n")))))
-	  ("x" "Tasks"
-	   ((todo "TODO"
-		  ((org-agenda-todo-keyword-format ":%s:")
-		   (org-agenda-prefix-format '((todo   . " ")))
-		   (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))
-		   (org-agenda-overriding-header " Todo \n")))
+	      '(
+	        ("g" "Get Things Done (GTD)"
+	         ((agenda ""
+		                ((org-agenda-skip-function
+		                  '(org-agenda-skip-entry-if 'deadline))
+		                 (org-deadline-warning-days 0)))
+	          (todo "STARTED|WAITING"
+		              ((org-agenda-skip-function
+		                '(org-agenda-skip-entry-if 'deadline))
+		               (org-agenda-prefix-format "  %i %-12:c [%e] ")
+		               (org-agenda-overriding-header "\nTasks\n")))
+	          (agenda nil
+		                ((org-agenda-entry-types '(:deadline))
+		                 (org-agenda-format-date "")
+		                 (org-deadline-warning-days 31)
+		                 (org-agenda-skip-function
+		                  '(org-agenda-skip-entry-if 'regexp "\\* DONE"))
+		                 (org-agenda-overriding-header "\nDeadlines")))
+	          (tags-todo "inbox"
+		                   ((org-agenda-prefix-format "  %?-12t% s")
+			                  (org-agenda-overriding-header "\nInbox\n")))
+	          (tags "CLOSED>=\"<today>\""
+		              ((org-agenda-overriding-header "\nCompleted today\n")))))
+	        ("x" "Tasks"
+	         ((todo "TODO"
+		              ((org-agenda-todo-keyword-format ":%s:")
+		               (org-agenda-prefix-format '((todo   . " ")))
+		               (org-agenda-skip-function '(org-agenda-skip-entry-if 'timestamp))
+		               (org-agenda-overriding-header " Todo \n")))
 
-	    (tags "+work-TODO=\"DONE\""
-		  ((org-agenda-span 90)
-		   (org-agenda-overriding-header "\nPending Work Tasks\n")))
+	          (tags "+work-TODO=\"DONE\""
+		              ((org-agenda-span 90)
+		               (org-agenda-overriding-header "\nPending Work Tasks\n")))
 
-	    ;; (tags "+TALK+TIMESTAMP>=\"<now>\""
-	    ;;	  ((org-agenda-span 90)
-	    ;;	   (org-agenda-max-tags 5)
-	    ;;	   (org-agenda-overriding-header "\n Upcoming talks\n")))
+	          ;; (tags "+TALK+TIMESTAMP>=\"<now>\""
+	          ;;	  ((org-agenda-span 90)
+	          ;;	   (org-agenda-max-tags 5)
+	          ;;	   (org-agenda-overriding-header "\n Upcoming talks\n")))
 
-	    ;; (tags "TEACHING+TIMESTAMP>=\"<now>\""
-	    ;;	  ((org-agenda-span 90)
-	    ;;	   (org-agenda-max-tags 5)
-	    ;;	   (org-agenda-overriding-header "\n Upcoming lessons\n")))
+	          ;; (tags "TEACHING+TIMESTAMP>=\"<now>\""
+	          ;;	  ((org-agenda-span 90)
+	          ;;	   (org-agenda-max-tags 5)
+	          ;;	   (org-agenda-overriding-header "\n Upcoming lessons\n")))
 
-	    ;; (tags "TRAVEL+TIMESTAMP>=\"<now>\""
-	    ;;	  ((org-agenda-span 90)
-	    ;;	   (org-agenda-max-tags 5)
-	    ;;	   (org-agenda-overriding-header "\n Upcoming travels\n")))
+	          ;; (tags "TRAVEL+TIMESTAMP>=\"<now>\""
+	          ;;	  ((org-agenda-span 90)
+	          ;;	   (org-agenda-max-tags 5)
+	          ;;	   (org-agenda-overriding-header "\n Upcoming travels\n")))
 
-	    ;; (tags "DEADLINE>=\"<today>\""
-	    ;;	  ((org-agenda-span 90)
-	    ;;	   (org-agenda-max-tags 5)
-	    ;;	   (org-agenda-overriding-header "\n Upcoming deadlines\n")))
-	    )
-	   )
-	  )
-	)
+	          ;; (tags "DEADLINE>=\"<today>\""
+	          ;;	  ((org-agenda-span 90)
+	          ;;	   (org-agenda-max-tags 5)
+	          ;;	   (org-agenda-overriding-header "\n Upcoming deadlines\n")))
+	          )
+	         )
+	        )
+	      )
 
   ;;
   ;; agenda timer
@@ -726,18 +726,18 @@
   (setq org-edit-src-content-indentation 0)
 
   (setq org-src-lang-modes '(
-			     ("C"      . c)
-			     ("C++"    . c++)
-			     ("bash"   . sh)
-			     ("cpp"    . c++)
-			     ("elisp"  . emacs-lisp)
-			     ("ocaml"  . tuareg)
-			     ("shell"  . sh)
-			     ("vimrc"  . vimrc)
-			     ("python" . python)
-			     ("lua"    . lua-ts)
-			     ("php"    . php)
-			     ))
+			                       ("C"      . c)
+			                       ("C++"    . c++)
+			                       ("bash"   . sh)
+			                       ("cpp"    . c++)
+			                       ("elisp"  . emacs-lisp)
+			                       ("ocaml"  . tuareg)
+			                       ("shell"  . sh)
+			                       ("vimrc"  . vimrc)
+			                       ("python" . python)
+			                       ("lua"    . lua-ts)
+			                       ("php"    . php)
+			                       ))
   )
 
 (use-package org-id
@@ -746,7 +746,7 @@
   :ensure nil
   :bind (:map org-mode-map ("C-c C-x i" . org-id-get-create))
   :commands (contrib/org-get-id
-	     contrib/org-id-headlines)
+	           contrib/org-id-headlines)
   :config
   (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
 
@@ -760,21 +760,21 @@ case, the CUSTOM_ID of the entry is returned."
     (interactive)
     (org-with-point-at pom
       (let ((id (org-entry-get nil "CUSTOM_ID")))
-	(cond
-	 ((and id (stringp id) (string-match "\\S-" id))
-	  id)
-	 (create
-	  (setq id (org-id-new (concat prefix "h")))
-	  (org-entry-put pom "CUSTOM_ID" id)
-	  (org-id-add-location id (buffer-file-name (buffer-base-buffer)))
-	  id)))))
+	      (cond
+	       ((and id (stringp id) (string-match "\\S-" id))
+	        id)
+	       (create
+	        (setq id (org-id-new (concat prefix "h")))
+	        (org-entry-put pom "CUSTOM_ID" id)
+	        (org-id-add-location id (buffer-file-name (buffer-base-buffer)))
+	        id)))))
 
   (defun contrib/org-id-headlines ()
     "Add CUSTOM_ID properties to all headlines in the current
 file which do not already have one."
     (interactive)
     (org-map-entries (lambda ()
-		       (contrib/org-get-id (point) 'create))))
+		                   (contrib/org-get-id (point) 'create))))
   )
 
 (use-package org-clock
@@ -974,7 +974,7 @@ file which do not already have one."
     string)
 
   (advice-add 'org-babel-edit-prep:emacs-lisp :after
-	      #'(lambda (_info) (run-hooks 'emacs-lisp-mode-hook))))
+	            #'(lambda (_info) (run-hooks 'emacs-lisp-mode-hook))))
 
 (use-package org-ref
   :after (org)
@@ -989,11 +989,11 @@ file which do not already have one."
 
   (setq bibtex-completion-additional-search-fields '(keywords))
   (setq	bibtex-completion-display-formats
-	'((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-	  (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-	  (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-	  (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-	  (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}")))
+	      '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+	        (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+	        (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+	        (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+	        (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}")))
   )
 
 (use-package bibtex
@@ -1001,9 +1001,9 @@ file which do not already have one."
   :demand t
   :config
   (setq bibtex-completion-pdf-open-function
-	(lambda (fpath)
-	  (cond ((eq system-type 'darwin) (start-process "open" "*open*" "open" fpath))
-		((eq system-type 'gnu/linux) (start-process "evince" "*evince*" "evince" fpath)))))
+	      (lambda (fpath)
+	        (cond ((eq system-type 'darwin) (start-process "open" "*open*" "open" fpath))
+		            ((eq system-type 'gnu/linux) (start-process "evince" "*evince*" "evince" fpath)))))
 
   (setq bibtex-completion-pdf-field "file")
   (setq bibtex-completion-pdf-symbol "⌘")
@@ -1014,15 +1014,15 @@ file which do not already have one."
   (setq bibtex-completion-notes-path my-bibtex-completion-notes-path)
 
   (setq bibtex-autokey-year-length 4
-	bibtex-autokey-name-year-separator "-"
-	bibtex-autokey-year-title-separator "-"
-	bibtex-autokey-titleword-separator "-"
-	bibtex-autokey-titlewords 2
-	bibtex-autokey-titlewords-stretch 1
-	bibtex-autokey-titleword-length 5
-	bibtex-autokey-edit-before-use nil
-	bibtex-autokey-names 1
-	)
+	      bibtex-autokey-name-year-separator "-"
+	      bibtex-autokey-year-title-separator "-"
+	      bibtex-autokey-titleword-separator "-"
+	      bibtex-autokey-titlewords 2
+	      bibtex-autokey-titlewords-stretch 1
+	      bibtex-autokey-titleword-length 5
+	      bibtex-autokey-edit-before-use nil
+	      bibtex-autokey-names 1
+	      )
   )
 
 (use-package oc-bibtex
@@ -1045,19 +1045,19 @@ file which do not already have one."
 
   (citar-indicators
    (list citar-indicator-files ; plain text
-	 citar-indicator-notes-icons)) ; icon
+	       citar-indicator-notes-icons)) ; icon
 
   (citar-symbol-separator "   ")
   :hook (
-	 (LaTeX-mode . citar-capf-setup)
-	 (org-mode . citar-capf-setup)
-	 )
+	       (LaTeX-mode . citar-capf-setup)
+	       (org-mode . citar-capf-setup)
+	       )
   :config
   (setq citar-templates
-	'((main . "${author editor:20%sn} ${date year issued:4}     ${title:60}")
-	  (suffix . "          ${=key= id:15}    ${=type=:12}    ${tags keywords:*}")
-	  (preview . "${author editor:%etal} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
-	  (note . "${author editor:%etal}: ${title}")))
+	      '((main . "${author editor:20%sn} ${date year issued:4}     ${title:60}")
+	        (suffix . "          ${=key= id:15}    ${=type=:12}    ${tags keywords:*}")
+	        (preview . "${author editor:%etal} (${year issued date}) ${title}, ${journal journaltitle publisher container-title collection-title}.\n")
+	        (note . "${author editor:%etal}: ${title}")))
   )
 
 (use-package citar-embark
@@ -1066,18 +1066,18 @@ file which do not already have one."
   :custom
   (citar-at-point-function 'embark-act)
   :hook (
-	 (LaTeX-mode . citar-embark-mode)
-	 (org-mode . citar-embark-mode)
-	 )
+	       (LaTeX-mode . citar-embark-mode)
+	       (org-mode . citar-embark-mode)
+	       )
   )
 
 (use-package org-crypt
   :straight nil
   :after (org)
   :bind (:map org-mode-map
-	      ("C-c C-x /"    . my-org-set-crypt-tag)
-	      ("C-c C-x C-/"  . org-decrypt-entry)
-	      ("C-c C-x C-\\" . org-encrypt-entry))
+	            ("C-c C-x /"    . my-org-set-crypt-tag)
+	            ("C-c C-x C-/"  . org-decrypt-entry)
+	            ("C-c C-x C-\\" . org-encrypt-entry))
   :custom
   (org-tags-exclude-from-inheritance (quote ("crypt")))
   (org-crypt-disable-auto-save nil)
@@ -1107,7 +1107,7 @@ file which do not already have one."
   :after (org)
   :commands (org-remark-global-tracking-mode)
   :bind (:map org-mode-map
-	      ("C-c C-x R" . org-remark-mode))
+	            ("C-c C-x R" . org-remark-mode))
   :config
   (org-remark-global-tracking-mode t))
 
@@ -1131,7 +1131,7 @@ file which do not already have one."
   (defun get-journal-file-yesterday ()
     "Gets filename for yesterday's journal entry."
     (let* ((yesterday (time-subtract (current-time) (days-to-time 1)))
-	   (daily-name (format-time-string "%Y%m%d.org" yesterday)))
+	         (daily-name (format-time-string "%Y%m%d.org" yesterday)))
       (expand-file-name (concat org-journal-dir daily-name))))
 
   (defun journal-file-yesterday ()
@@ -1170,8 +1170,8 @@ file which do not already have one."
     "Insert node immediatly without prompting for input."
     (interactive "P")
     (let ((args (cons arg args))
-	  (org-roam-capture-templates (list (append (car org-roam-capture-templates)
-						    '(:immediate-finish t)))))
+	        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
+						                                        '(:immediate-finish t)))))
       (apply #'org-roam-node-insert args)))
   :custom
   (org-roam-directory my-org-roam-directory)
@@ -1180,18 +1180,18 @@ file which do not already have one."
   (org-roam-capture-templates my-org-roam-capture-templates)
   (org-roam-node-display-template (concat "${type:15} ${title:*} " (propertize "${tags:45}" 'face 'org-tag)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n i" . org-roam-node-insert)
-	 :map org-mode-map
-	 ("C-M-i"    . completion-at-point))
+	       ("C-c n f" . org-roam-node-find)
+	       ("C-c n i" . org-roam-node-insert)
+	       :map org-mode-map
+	       ("C-M-i"    . completion-at-point))
   :config
   (cl-defmethod org-roam-node-type ((node org-roam-node))
     "Return the TYPE of NODE."
     (condition-case nil
-	(file-name-nondirectory
-	 (directory-file-name
-	  (file-name-directory
-	   (file-relative-name (org-roam-node-file node) org-roam-directory))))
+	      (file-name-nondirectory
+	       (directory-file-name
+	        (file-name-directory
+	         (file-relative-name (org-roam-node-file node) org-roam-directory))))
       (error "")))
 
   (org-roam-setup)
@@ -1199,6 +1199,7 @@ file which do not already have one."
 
 (use-package citar-org-roam
   :after (citar org-roam)
+  :defer t
   :custom
   (citar-org-roam-subdir "BibliographyNotes")
   (citar-org-roam-capture-template-key "n")
@@ -1219,8 +1220,8 @@ file which do not already have one."
     (setq org-download-heading-lvl nil)
     ;; (setq org-download-image-dir (concat "~/Documents/Org/ImagesDirectory/" (file-name-sans-extension (buffer-name))))
     (if (string-prefix-p (expand-file-name "~/Documents/Projects/Projects-Personal/asmartisan256.github.io/")
-			 (expand-file-name default-directory))
-	(setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) "-img"))
+			                   (expand-file-name default-directory))
+	      (setq org-download-image-dir (concat (file-name-sans-extension (buffer-file-name)) "-img"))
       (setq org-download-image-dir (concat my-org-images-directory (file-name-sans-extension (buffer-name))))
       )
 

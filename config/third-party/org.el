@@ -118,11 +118,11 @@
   ;;
   ;; refile
   ;;
-  (setq org-refile-targets
-	      '(
-	        ;; to expand...
-	        ("Work.org" :regexp . "\\(?:\\(?:Issue\\|Pull Request\\)s\\)")
-	        ))
+  (defun my/org-files ()
+    (seq-filter 'file-exists-p
+                (directory-files-recursively org-directory "\\.org\\'")))
+  (setq-default org-refile-targets '((my/org-files . (:level . 1))))
+
   (setq org-refile-use-outline-path 'file)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-refile-use-cache t)

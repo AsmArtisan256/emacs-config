@@ -64,12 +64,12 @@
   (load custom-file 'noerror))
 
 ;; gc cleanup
-(unless (eq system-type 'darwin)
-  (defun gc-and-trim ()
-    (interactive)
-    (garbage-collect)
-    (malloc-trim))
-  (run-with-idle-timer 10 t 'gc-and-trim))
+(defun gc-and-trim ()
+  (interactive)
+  (garbage-collect)
+  (unless (eq system-type 'darwin)
+    (malloc-trim)))
+(run-with-idle-timer 10 t 'gc-and-trim)
 
 ;; other straight stuff that needs to be here
 ;; (use-package org :straight (:type built-in))

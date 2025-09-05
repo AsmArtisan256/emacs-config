@@ -57,9 +57,6 @@
 ;;   (load-theme 'modus-vivendi :no-confirm)
 ;;   )
 
-;; the definitive theme TBHBBQFAM (the lightest of them all)
-(add-to-list 'default-frame-alist '(reverse . t))
-(setq initial-frame-alist default-frame-alist)
 
 ;; line highlight
 (require 'hl-line)

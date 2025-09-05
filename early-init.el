@@ -54,4 +54,9 @@
       inhibit-startup-echo-area-message user-login-name ; read the docstring
       inhibit-startup-buffer-menu t)
 
+
+;; the definitive theme TBHBBQFAM (the lightest of them all)
+(add-to-list 'default-frame-alist '(reverse . t))
+(setq initial-frame-alist default-frame-alist)
+
 (provide 'early-init)

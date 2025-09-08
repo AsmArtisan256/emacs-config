@@ -34,6 +34,7 @@
 (load (xah-get-fullpath "internal/whitespace.el"))
 (load (xah-get-fullpath "internal/fill-column.el"))
 (load (xah-get-fullpath "internal/hs.el"))
+(load (xah-get-fullpath "internal/buffers.el"))
 
 ;;
 ;; internal programming

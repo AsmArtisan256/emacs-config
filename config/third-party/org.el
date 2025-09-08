@@ -5,15 +5,9 @@
 (use-package org
   :straight (:type built-in)
   :hook
-  (org-mode . prettify-symbols-mode)
+  (org-mode . org-toggle-pretty-entities)
   (org-mode . variable-pitch-mode)
   :config
-
-  ;;
-  ;; variables
-  ;;
-
-
   ;;
   ;; directories
   ;;

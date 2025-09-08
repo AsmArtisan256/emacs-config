@@ -33,6 +33,7 @@
 (load (xah-get-fullpath "internal/icomplete.el"))
 (load (xah-get-fullpath "internal/whitespace.el"))
 (load (xah-get-fullpath "internal/fill-column.el"))
+(load (xah-get-fullpath "internal/hs.el"))
 
 ;;
 ;; internal programming

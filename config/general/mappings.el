@@ -48,6 +48,11 @@ With argument ARG, do this that many times."
 ;; minibuffer
 (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete)
 
+;; DWIM commands
+(global-set-key (kbd "M-u") 'upcase-dwim)
+(global-set-key (kbd "M-l") 'downcase-dwim)
+(global-set-key (kbd "M-c") 'capitalize-dwim)
+
 ;; unsetting
 (global-unset-key [mouse-2])
 (global-unset-key (kbd "C-z"))

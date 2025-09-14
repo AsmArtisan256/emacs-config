@@ -35,6 +35,8 @@
 (load (xah-get-fullpath "internal/fill-column.el"))
 (load (xah-get-fullpath "internal/hs.el"))
 (load (xah-get-fullpath "internal/buffers.el"))
+(load (xah-get-fullpath "internal/compile.el"))
+(load (xah-get-fullpath "internal/pcre.el"))
 
 ;;
 ;; internal programming
@@ -108,6 +110,7 @@
 ;; colors and help stuff
 (load (xah-get-fullpath "third-party/helpful.el"))
 (load (xah-get-fullpath "third-party/info-colors.el"))
+(load (xah-get-fullpath "third-party/hl-todo.el"))
 
 ;; formatting
 (load (xah-get-fullpath "third-party/apheleia.el"))

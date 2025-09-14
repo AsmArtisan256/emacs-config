@@ -65,8 +65,13 @@
 ;;
 
 ;; show parenthesis
-(show-paren-mode t)
-(setq show-paren-delay 0.0)
+(use-package paren
+  :defer 2
+  :config
+  (show-paren-mode 1)
+  (setq show-paren-delay 0.1
+        show-paren-highlight-openparen t
+        show-paren-when-point-inside-paren t))
 
 ;; autopair
 (electric-pair-mode 1)
@@ -75,7 +80,8 @@
 (delete-selection-mode 1)
 
 ;; handle long lines without killing emacs
-(global-so-long-mode)
+(use-package so-long
+  :hook (after-init . global-so-long-mode))
 
 ;; save place
 (setq save-place-file "~/.config/emacs/saveplace")
@@ -95,3 +101,59 @@
 
 ;; code folding
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+
+
+;;
+;;
+;;
+;;
+;;
+
+(use-package window
+  :straight (:type built-in)
+  :bind (("H-+" . balance-windows-area)
+         ;; ("C-x +" . balance-windows-area)
+         ("C-x q" . my/kill-buffer-and-window)
+         ("ESC M-v" . scroll-other-window-down)
+         :map window-prefix-map
+         ("1" . my/window-toggle-dedicated))
+  :config
+  (setq switch-to-prev-buffer-skip nil) ;'this
+  (setq truncate-partial-width-windows t)
+  (setq other-window-scroll-default
+        (lambda ()
+          (or (get-mru-window nil nil 'not-this-one-dummy)
+              (next-window)
+              (next-window nil nil 'visible))))
+  (defun my/kill-buffer-and-window ()
+    "Kill buffer.
+
+Also kill this window, tab or frame if necessary."
+    (interactive)
+    (if (one-window-p)
+        (progn (kill-buffer)
+               (my/delete-window-or-delete-frame))
+      (kill-buffer-and-window)))
+
+  ;; quit-window behavior is completely broken
+  ;; Fix by adding winner-mode style behavior to quit-window
+  (defun my/better-quit-window-save (window)
+    (push (window-parameter window 'quit-restore)
+          (window-parameter window 'quit-restore-stack))
+    window)
+  (defun my/better-quit-window-restore (origfn &optional window bury-or-kill)
+    (let ((sw (or window (selected-window))))
+      (funcall origfn window bury-or-kill)
+      (when (eq sw (selected-window))
+        (pop (window-parameter nil 'quit-restore-stack))
+        (setf (window-parameter nil 'quit-restore)
+              (car (window-parameter nil 'quit-restore-stack))))))
+
+  (defun my/window-toggle-dedicated (&optional win)
+    (interactive (list (selected-window)))
+    (let ((dedicated (window-dedicated-p win)))
+      (set-window-dedicated-p win (not dedicated))
+      (message "Window marked as %s." (if dedicated "free" "dedicated"))))
+
+  (advice-add 'display-buffer :filter-return #'my/better-quit-window-save)
+  (advice-add 'quit-restore-window :around #'my/better-quit-window-restore))

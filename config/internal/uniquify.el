@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
+(use-package uniquify
+  :straight (:type built-in)
+  :init (setq uniquify-buffer-name-style 'forward))

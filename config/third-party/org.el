@@ -1169,6 +1169,15 @@ file which do not already have one."
       (apply #'org-roam-node-insert args)))
   :custom
   (org-roam-directory my-org-roam-directory)
+
+  ;; dailies
+  (org-roam-dailies-directory "Journal/")
+  (org-roam-dailies-capture-templates
+   '(("d" "default" entry
+      "* %?"
+      :target (file+head "%<%Y-%m-%d>.org"
+                         "#+title: %<%Y-%m-%d>\n"))))
+
   (org-roam-completion-everywhere t)
 
   (org-roam-capture-templates my-org-roam-capture-templates)

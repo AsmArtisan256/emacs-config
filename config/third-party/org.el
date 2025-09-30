@@ -112,10 +112,11 @@
   ;;
   ;; refile
   ;;
-  (defun my/org-files ()
-    (seq-filter 'file-exists-p
-                (directory-files-recursively org-directory "\\.org\\'")))
-  (setq-default org-refile-targets '((my/org-files . (:level . 1))))
+  ;; (defun my/org-files ()
+  ;;   (seq-filter 'file-exists-p
+  ;;               (directory-files-recursively my-org-roam-directory "\\.org\\'")))
+  ;; (setq-default org-refile-targets '((my/org-files . (:level . 1))))
+  (setq-default org-refile-targets '((my-org-refile-files . (:level . 1))))
 
   (setq org-refile-use-outline-path 'file)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -1167,6 +1168,11 @@ file which do not already have one."
 	        (org-roam-capture-templates (list (append (car org-roam-capture-templates)
 						                                        '(:immediate-finish t)))))
       (apply #'org-roam-node-insert args)))
+  (defun my/org-roam-add-this-file-to-org-roam ()
+    (interactive)
+    (org-id-store-link)
+    (me/org-roam-refresh-id-locations)
+    )
   :custom
   (org-roam-directory my-org-roam-directory)
 

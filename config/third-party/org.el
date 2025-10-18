@@ -253,6 +253,21 @@
   ;;   (face-spec-reset-face face)
   ;;   (set-face-foreground face (face-attribute 'default :background)))
   (set-face-background 'fringe (face-attribute 'default :background))
+
+  ;; set custom org emphasis faces here (after org-modern)
+  (defface org-custom-emphasis-bold
+    '((default :inherit bold)
+      (((class color) (min-colors 88) (background light)) :foreground "#a60000")
+      (((class color) (min-colors 88) (background dark))  :foreground "#ff8059"))
+    "Custom Org-Mode bold emphasis face.")
+
+  (setq org-emphasis-alist
+        '(("*" org-custom-emphasis-bold)
+          ("/" italic)
+          ("_" underline)
+          ("=" org-verbatim verbatim)
+          ("~" org-code verbatim)
+          ("+" (:strike-through t))))
   )
 
 (use-package org-tempo

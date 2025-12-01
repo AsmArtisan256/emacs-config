@@ -10,7 +10,7 @@
 	       ("C-c k" . eldoc)
 	       ("C-; f" . eglot-format)
 	       ("C-; a" . eglot-code-actions)
-	       ("C-; e" . flycheck-list-errors)
+	       ("C-; e" . flymake-show-diagnostics-buffer)
 	       ("C-; d" . xref-find-definitions)
 	       ("C-; r" . xref-find-references)
 	       ("C-; p" . xref-go-back)
@@ -69,6 +69,14 @@
 		             "--completion-style=bundled"
 		             "--header-insertion=never"
 		             "--header-insertion-decorators"))
+
+  (defun my/do-then-quit (&rest args)
+    "Execute function and quit window."
+    (let ((win (selected-window)))
+      (apply (car args) (cdr args))
+      (quit-window nil win)))
+
+  (advice-add #'xref-goto-xref :around #'my/do-then-quit)
   )
 
 ;; for C/C++ definitions

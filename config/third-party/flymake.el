@@ -6,7 +6,7 @@
   :defer t
   :custom
   (flymake-fringe-indicator-position 'left-fringe)
-  (flymake-show-diagnostics-at-end-of-line t)
+  (flymake-show-diagnostics-at-end-of-line nil)
   (flymake-suppress-zero-counters t)
   (flymake-wrap-around nil)
   )

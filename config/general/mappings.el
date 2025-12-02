@@ -46,7 +46,7 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "<end>") 'move-end-of-line)
 
 ;; newline and indent
-(global-set-key (kbd "RET") 'newline-and-indent)
+;; (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; minibuffer
 (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete)

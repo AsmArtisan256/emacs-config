@@ -4,7 +4,16 @@
   :straight t
   :ensure t
   :defer nil
-  :bind (("C-]" . er/expand-region))
+  :preface
+  (defun my/er-contract-region ()
+    "Contract region like calling C-- C-]."
+    (interactive)
+    (let ((current-prefix-arg '(-1)))
+      (call-interactively #'er/expand-region)))
+  :bind (
+         ("C-]" . er/expand-region)
+         ("C-c ]" . my/er-contract-region)
+         )
   )
 
 ;; prefix with C-u to copy instead of kill

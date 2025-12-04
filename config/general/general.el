@@ -87,9 +87,6 @@
 (setq save-place-file "~/.config/emacs/saveplace")
 (save-place-mode 1)
 
-;; treat as subword globally
-(global-subword-mode 1)
-
 ;; stuff about marks dunno lmao
 (transient-mark-mode 1)
 

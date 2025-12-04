@@ -47,6 +47,9 @@
 ;; third party
 ;;
 
+;; syntax subword for improved subword navigation
+(load (xah-get-fullpath "third-party/syntax-subword.el"))
+
 ;; theme related (theme.el already has modus-theme)
 ;; (load (xah-get-fullpath "third-party/pulsar.el"))
 (load (xah-get-fullpath "third-party/lin.el"))

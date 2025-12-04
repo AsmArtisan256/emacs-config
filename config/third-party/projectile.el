@@ -6,7 +6,7 @@
   (projectile-completion-system 'default)
   (projectile-enable-caching t)
   (projectile-sort-order 'recently-active)
-  (projectile-indexing-method 'native)
+  (projectile-indexing-method 'alien)
   (projectile-track-known-projects-automatically t)
   (projectile-project-search-path '(("~/Documents/Projects/Projects-Personal" . 1)))
   :config

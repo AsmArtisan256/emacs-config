@@ -45,7 +45,8 @@ With argument ARG, do this that many times."
 (global-set-key (kbd "<home>") 'smart-beginning-of-line)
 (global-set-key (kbd "<end>") 'move-end-of-line)
 
-;; newline and indent
+;; newline and indent ;; be careful, this shit fucked up braces indentation
+;; when pressing enter (C/C++)
 ;; (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; minibuffer

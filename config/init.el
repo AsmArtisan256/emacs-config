@@ -35,13 +35,13 @@
 (load (xah-get-fullpath "internal/fill-column.el"))
 (load (xah-get-fullpath "internal/hs.el"))
 (load (xah-get-fullpath "internal/buffers.el"))
-(load (xah-get-fullpath "internal/compile.el"))
+;; (load (xah-get-fullpath "internal/compile.el"))
 (load (xah-get-fullpath "internal/pcre.el"))
 
 ;;
 ;; internal programming
 ;;
-(load (xah-get-fullpath "internal/cmode.el"))
+;; (load (xah-get-fullpath "internal/cmode.el"))
 
 ;;
 ;; third party
@@ -87,7 +87,7 @@
 
 ;; editing
 (load (xah-get-fullpath "third-party/hungry-delete.el"))
-(load (xah-get-fullpath "third-party/multiple-cursors.el"))
+;; (load (xah-get-fullpath "third-party/multiple-cursors.el"))
 
 (load (xah-get-fullpath "third-party/avy.el"))
 
@@ -97,14 +97,14 @@
 (load (xah-get-fullpath "third-party/undo-fu-session.el"))
 
 ;; completion, info, snippets, etc
-(load (xah-get-fullpath "third-party/tempel.el"))
+;; (load (xah-get-fullpath "third-party/tempel.el"))
 (load (xah-get-fullpath "third-party/corfu.el"))
 (load (xah-get-fullpath "third-party/vertico.el"))
 (load (xah-get-fullpath "third-party/marginalia.el"))
 (load (xah-get-fullpath "third-party/consult.el"))
 (load (xah-get-fullpath "third-party/orderless.el"))
 (load (xah-get-fullpath "third-party/embark.el"))
-(load (xah-get-fullpath "third-party/eglot.el"))
+;; (load (xah-get-fullpath "third-party/eglot.el"))
 
 ;; spell checking, errors, etc
 (load (xah-get-fullpath "third-party/flymake.el"))
@@ -116,7 +116,7 @@
 (load (xah-get-fullpath "third-party/hl-todo.el"))
 
 ;; formatting
-(load (xah-get-fullpath "third-party/apheleia.el"))
+;; (load (xah-get-fullpath "third-party/apheleia.el"))
 
 ;; git
 (load (xah-get-fullpath "third-party/diff-hl.el"))
@@ -129,8 +129,8 @@
 (load (xah-get-fullpath "third-party/auctex.el"))
 
 ;; other modes
-(load (xah-get-fullpath "third-party/vimrc-mode.el"))
-(load (xah-get-fullpath "third-party/rust-mode.el"))
-(load (xah-get-fullpath "third-party/nasm-mode.el"))
-(load (xah-get-fullpath "third-party/php-mode.el"))
-(load (xah-get-fullpath "third-party/zig-mode.el"))
+;; (load (xah-get-fullpath "third-party/vimrc-mode.el"))
+;; (load (xah-get-fullpath "third-party/rust-mode.el"))
+;; (load (xah-get-fullpath "third-party/nasm-mode.el"))
+;; (load (xah-get-fullpath "third-party/php-mode.el"))
+;; (load (xah-get-fullpath "third-party/zig-mode.el"))

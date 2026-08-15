@@ -41,10 +41,10 @@
 
   (defun my/lsp-mode ()
     ;; dunno whatever this does idc
-    (setq-local completion-at-point-functions
-		            (list (cape-capf-super
-		                   #'eglot-completion-at-point
-		                   #'tempel-expand)))
+    ;; (setq-local completion-at-point-functions
+		;;             (list (cape-capf-super
+		;;                    #'eglot-completion-at-point
+		;;                    #'tempel-expand)))
 
     ;; disable inlay hints
     (eglot-inlay-hints-mode -1)
@@ -69,6 +69,8 @@
 		             "--completion-style=bundled"
 		             "--header-insertion=never"
 		             "--header-insertion-decorators"))
+
+  (add-to-list 'eglot-server-programs '((python-mode) . ("ty" "server")))
 
   (defun my/do-then-quit (&rest args)
     "Execute function and quit window."

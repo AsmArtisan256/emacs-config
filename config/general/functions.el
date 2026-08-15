@@ -31,8 +31,9 @@
 ;; cd to project root
 (defun my/cd-project-root ()
   (interactive)
-  (if (projectile-project-root)
-      (cd (projectile-project-root))))
+  (if (fboundp 'projectile-project-root)
+      (when (projectile-project-root)
+        (cd (projectile-project-root)))))
 
 
 (defun my/garbage-collect-with-report ()

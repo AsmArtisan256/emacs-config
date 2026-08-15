@@ -32,9 +32,6 @@
   ;; show images inline
   (setq org-startup-with-inline-images t)
 
-  ;; return hit doesnt follow links (should I have this though? Use mouse??)
-  (setq org-return-follows-link nil)
-
   (setq org-use-speed-commands t)
   (setq org-reverse-note-order nil)
   (setq org-catch-invisible-edits 'show-and-error)
@@ -193,7 +190,7 @@
 
   ;; latex (maybe move to ox? or org-babel?)
   (setq org-preview-latex-default-process 'dvisvgm)
-  (setq org-latex-create-formula-image-program 'dvipng)
+  (setq org-latex-create-formula-image-program 'dvisvgm)
 
   (setq org-latex-default-packages-alist
 	      '(("T1" "fontenc" t)
@@ -215,15 +212,12 @@
 	      '(("fontsize" "\\footnotesize")
 	        ("linenos" "true")
 	        ("xleftmargin" "0em")))
-  (setq org-latex-pdf-process
-	      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   (setq org-latex-src-block-backend 'minted)
   (setq org-latex-listings 'minted
 	      org-latex-packages-alist '(("newfloat" "minted"))
 	      org-latex-pdf-process
 	      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
 	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   )
 

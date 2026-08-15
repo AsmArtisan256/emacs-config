@@ -6,7 +6,7 @@
   (setq-default history-length 1000)
   (setq-default history-delete-duplicates t)
   (setq-default savehist-save-minibuffer-history t)
-  (setq-default savehist-additional-variables '(kill-ring search-ring regexp-search-ring))
+  (setq-default savehist-additional-variables '(search-ring regexp-search-ring))
 
   (savehist-mode 1)
 

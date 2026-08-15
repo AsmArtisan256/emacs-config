@@ -5,8 +5,8 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default tab-stop-list (number-sequence 2 80 2))
-(setq c-basic-indent 2)
-(setq sh-basic-offset 2)
+;; (setq c-basic-indent 2)
+;; (setq sh-basic-offset 2)
 
 (setq default-directory "~/"
       ;; always follow symlinks when opening files
@@ -64,6 +64,9 @@
 ;; modes
 ;;
 
+;; soft line wrapping for prose/writing
+(add-hook 'text-mode-hook #'visual-line-mode)
+
 ;; show parenthesis
 (use-package paren
   :defer 2
@@ -97,7 +100,7 @@
 (global-auto-revert-mode 1)
 
 ;; code folding
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+;; (add-hook 'prog-mode-hook #'hs-minor-mode)
 
 
 ;;

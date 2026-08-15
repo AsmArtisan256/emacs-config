@@ -94,6 +94,8 @@
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)
-  :config
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-tex)
+  (add-to-list 'completion-at-point-functions #'cape-dict)
+  ;; (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   )

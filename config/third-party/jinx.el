@@ -1,14 +1,13 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package jinx
-  :hook (org-mode . jinx-mode)
+  :hook ((org-mode . jinx-mode)
+         (LaTeX-mode . jinx-mode)
+         (latex-mode . jinx-mode))
   :bind (("M-$" . jinx-correct)
 	 ("C-M-$" . jinx-languages))
   :custom
   (jinx-languages "en_US pt_PT")
-  (jinx-include-faces
-   '((prog-mode font-lock-doc-face)
-     (conf-mode font-lock-comment-face)))
   (jinx-exclude-regexps
    '((t "[A-Z]+\\>"
 	"\\<[[:upper:]][[:lower:]]+\\>"

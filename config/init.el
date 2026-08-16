@@ -56,7 +56,10 @@
 (load (xah-get-fullpath "third-party/cursory.el"))
 
 ;; modeline
-;; (load (xah-get-fullpath "third-party/modeline.el"))
+(load (xah-get-fullpath "third-party/modeline.el"))
+
+;; tabs
+(load (xah-get-fullpath "third-party/centaur-tabs.el"))
 
 ;; projectile
 (load (xah-get-fullpath "third-party/projectile.el"))

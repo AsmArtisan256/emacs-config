@@ -83,18 +83,39 @@
   (setq org-fontify-whole-heading-line t)
   (setq org-fontify-whole-block-delimiter-line t)
 
-  ;; headline sizes
-  (set-face-attribute 'org-level-1 nil :height 1.3)
-  (set-face-attribute 'org-level-2 nil :height 1.2)
-  (set-face-attribute 'org-level-3 nil :height 1.1)
-  (set-face-attribute 'org-level-4 nil :height 1.0)
-  (set-face-attribute 'org-level-5 nil :height 1.0)
-  (set-face-attribute 'org-level-6 nil :height 1.0)
-  (set-face-attribute 'org-level-7 nil :height 1.0)
-  (set-face-attribute 'org-level-8 nil :height 1.0)
+  ;; Block and quote card styling
+  (set-face-attribute 'org-block nil :background "#202728" :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block-begin-line nil :foreground "#5d6b67" :background "#151a1b" :slant 'italic)
+  (set-face-attribute 'org-block-end-line nil :foreground "#5d6b67" :background "#151a1b" :slant 'italic)
+  (set-face-attribute 'org-quote nil :background "#202728" :slant 'italic)
+  (set-face-attribute 'org-drawer nil :foreground "#5d6b67" :slant 'italic)
+  (set-face-attribute 'org-special-keyword nil :foreground "#5d6b67")
+  (set-face-attribute 'org-property-value nil :foreground "#a3afa5")
 
-  ;; footnotes
+  ;; headline hierarchy & Everforest colors
+  (set-face-attribute 'org-document-title nil :height 1.45 :weight 'bold :foreground "#b7d88d")
+  (set-face-attribute 'org-document-info nil :foreground "#a3afa5")
+  (set-face-attribute 'org-level-1 nil :height 1.35 :weight 'bold :foreground "#b7d88d")
+  (set-face-attribute 'org-level-2 nil :height 1.20 :weight 'bold :foreground "#e8ca7a")
+  (set-face-attribute 'org-level-3 nil :height 1.10 :weight 'semi-bold :foreground "#8bcfc7")
+  (set-face-attribute 'org-level-4 nil :height 1.00 :weight 'normal :foreground "#e5a1c3")
+  (set-face-attribute 'org-level-5 nil :height 1.00 :foreground "#93d9a6")
+  (set-face-attribute 'org-level-6 nil :height 1.00 :foreground "#a3afa5")
+  (set-face-attribute 'org-level-7 nil :height 1.00 :foreground "#89968c")
+  (set-face-attribute 'org-level-8 nil :height 1.00 :foreground "#89968c")
+
+  ;; source blocks & LaTeX preview scaling
+  (setq org-edit-src-content-indentation 0)
+  (setq org-src-tab-acts-natively t)
+  (setq org-src-fontify-natively t)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.25))
+  (setq org-format-latex-options (plist-put org-format-latex-options :foreground 'auto))
+  (setq org-format-latex-options (plist-put org-format-latex-options :background 'auto))
+
+  ;; footnotes & tables
   (setq org-footnote-define-inline t)
+  (setq org-footnote-auto-adjust t)
+  (setq org-table-header-line-p t)
 
   ;;
   ;; logs
@@ -213,30 +234,55 @@
 	        ("linenos" "true")
 	        ("xleftmargin" "0em")))
   (setq org-latex-src-block-backend 'minted)
+  (setq org-latex-prefer-user-labels t)
   (setq org-latex-listings 'minted
 	      org-latex-packages-alist '(("newfloat" "minted"))
 	      org-latex-pdf-process
-	      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-	        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+	      '("latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
   )
 
 (use-package org-modern
   :after org
   :custom
-  (org-modern-table nil)
+  (org-modern-label-border 2)
+  (org-modern-table t)
+  (org-modern-horizontal-rule "──────")
+  (org-modern-keyword "‣ ")
+  (org-modern-star '("◉" "○" "◈" "◇" "✳" "◆"))
+  (org-modern-block-name '(" ▾ " . " ▴ "))
+  (org-modern-tag nil)
+  (org-modern-todo nil)
+  (org-modern-priority nil)
+  (org-modern-timestamp t)
+  (org-modern-statistics t)
+  (org-modern-progress t)
   (org-modern-list '((?+ . "➤") (?- . "•") (?* . "•")))
   ;; (org-modern-checkbox nil)
   (org-modern-checkbox
    '((88 . "☒")
      (45 . "◫")
      (32 . "☐")))
-  (org-modern-todo-faces
-   '(
-     ("CANCELED" :background "tomato" :foreground "white")
-     ))
   :config
   (global-org-modern-mode)
+
+  ;; Everforest tag and timestamp faces
+  (set-face-attribute 'org-modern-tag nil
+                      :inherit 'org-modern-label
+                      :background "#394445"
+                      :foreground "#a3afa5"
+                      :weight 'normal
+                      :box '(:line-width (1 . 3) :color "#394445" :style nil))
+  (set-face-attribute 'org-modern-date-active nil :background "#2b3435" :foreground "#8bcfc7" :weight 'semi-bold)
+  (set-face-attribute 'org-modern-date-inactive nil :background "#202728" :foreground "#89968c")
+  (set-face-attribute 'org-modern-time-active nil :background "#365e6d" :foreground "#f4ead5")
+  (set-face-attribute 'org-modern-time-inactive nil :background "#2b3435" :foreground "#89968c")
+
+  ;; Everforest inline code, verbatim, links & citations
+  (set-face-attribute 'org-code nil :background "#2b3435" :foreground "#93d9a6" :inherit 'fixed-pitch)
+  (set-face-attribute 'org-verbatim nil :background "#202728" :foreground "#e8ca7a" :inherit 'fixed-pitch)
+  (set-face-attribute 'org-link nil :foreground "#8bcfc7" :underline '(:color "#8bcfc7" :style line) :weight 'normal)
+  (set-face-attribute 'org-cite nil :foreground "#93d9a6" :background "#202728")
+  (set-face-attribute 'org-footnote nil :foreground "#8bcfc7" :slant 'italic)
 
   (modify-all-frames-parameters
    '((right-divider-width . 4)
@@ -252,7 +298,7 @@
   (defface org-custom-emphasis-bold
     '((default :inherit bold)
       (((class color) (min-colors 88) (background light)) :foreground "#a60000")
-      (((class color) (min-colors 88) (background dark))  :foreground "#ff8059"))
+      (((class color) (min-colors 88) (background dark))  :foreground "#f2ad7c"))
     "Custom Org-Mode bold emphasis face.")
 
   (setq org-emphasis-alist
@@ -1033,14 +1079,28 @@ file which do not already have one."
   :after (bibtex)
   :straight nil)
 
-;; TODO: verify if this is anything good at all
+(use-package oc-csl
+  :after (org)
+  :straight nil)
+
+(use-package oc-biblatex
+  :after (org)
+  :straight nil)
+
+;; Citar citation management with embark & vertico/corfu
 (use-package citar
   :after (org all-the-icons)
   :demand t
+  :bind
+  (("C-c b b" . citar-insert-citation)
+   ("C-c b o" . citar-open-files)
+   ("C-c b n" . citar-open-notes)
+   ("C-c b c" . citar-open))
   :custom
   (org-cite-insert-processor 'citar)
   (org-cite-follow-processor 'citar)
   (org-cite-activate-processor 'citar)
+  (org-cite-export-processors '((latex biblatex) (t csl)))
 
   (citar-bibliography org-cite-global-bibliography)
 

@@ -16,6 +16,8 @@
       tab-bar-close-button-show t
       tab-bar-new-button-show t
       tab-bar-tab-hints nil
+      tab-bar-close-button (propertize " ✕ " 'close-tab t 'help "Click to close tab")
+      tab-bar-new-button (propertize " + " 'help "Click to create a new tab")
       tab-bar-separator " ")
 
 ;; Top margin & breathing room around frame

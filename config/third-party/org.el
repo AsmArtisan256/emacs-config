@@ -83,11 +83,16 @@
   (setq org-fontify-whole-heading-line t)
   (setq org-fontify-whole-block-delimiter-line t)
 
+  ;; Structural outline indentation (Notion/Obsidian hierarchy)
+  (setq org-startup-indented t
+        org-indent-indentation-per-level 2
+        org-indent-mode-turns-on-hiding-stars t)
+
   ;; Block and quote card styling
   (set-face-attribute 'org-block nil :background "#202728" :inherit 'fixed-pitch)
   (set-face-attribute 'org-block-begin-line nil :foreground "#5d6b67" :background "#151a1b" :slant 'italic)
   (set-face-attribute 'org-block-end-line nil :foreground "#5d6b67" :background "#151a1b" :slant 'italic)
-  (set-face-attribute 'org-quote nil :background "#202728" :slant 'italic)
+  (set-face-attribute 'org-quote nil :background "#202728" :slant 'italic :box '(:line-width 1 :color "#365e6d"))
   (set-face-attribute 'org-drawer nil :foreground "#5d6b67" :slant 'italic)
   (set-face-attribute 'org-special-keyword nil :foreground "#5d6b67")
   (set-face-attribute 'org-property-value nil :foreground "#a3afa5")

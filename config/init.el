@@ -54,6 +54,7 @@
 ;; (load (xah-get-fullpath "third-party/pulsar.el"))
 (load (xah-get-fullpath "third-party/lin.el"))
 (load (xah-get-fullpath "third-party/cursory.el"))
+(load (xah-get-fullpath "third-party/spacious-padding.el"))
 
 ;; modeline
 (load (xah-get-fullpath "third-party/modeline.el"))

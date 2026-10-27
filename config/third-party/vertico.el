@@ -33,3 +33,15 @@
 
   (vertico-mode)
   )
+
+(use-package vertico-posframe
+  :straight t
+  :after vertico
+  :init
+  (vertico-posframe-mode 1)
+  :custom
+  (vertico-posframe-poshandler #'posframe-poshandler-frame-center)
+  (vertico-posframe-border-width 2)
+  (vertico-posframe-parameters
+   '((left-fringe . 8)
+     (right-fringe . 8))))

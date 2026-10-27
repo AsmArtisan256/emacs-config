@@ -1184,43 +1184,11 @@ file which do not already have one."
   :straight nil)
 
 ;; TODO: verify if actually needed, at all.
-(use-package org-journal
-  :after (org)
-  :preface
-  (defun get-journal-file-today ()
-    "Gets filename for today's journal entry."
-    (let ((daily-name (format-time-string "%Y%m%d.org")))
-      (expand-file-name (concat org-journal-dir daily-name))))
-
-  (defun journal-file-today ()
-    "Creates and/or loads a journal file based on today's date."
-    (interactive)
-    (find-file (get-journal-file-today)))
-
-  (defun get-journal-file-yesterday ()
-    "Gets filename for yesterday's journal entry."
-    (let* ((yesterday (time-subtract (current-time) (days-to-time 1)))
-	         (daily-name (format-time-string "%Y%m%d.org" yesterday)))
-      (expand-file-name (concat org-journal-dir daily-name))))
-
-  (defun journal-file-yesterday ()
-    "Creates and/or loads a file based on yesterday's date."
-    (interactive)
-    (find-file (get-journal-file-yesterday)))
-  :init
-  (setq org-journal-enable-agenda-integration t)
-  :custom
-  (org-journal-update-org-agenda-files)
-  ;; (org-journal-carryover-items "TODO=\"TODO\"|TODO=\"DOING\"|TODO=\"BLOCKED\"|TODO=\"REVIEW\"")
-  (org-journal-carryover-items nil)
-  :config
-  (setq org-journal-dir my-org-journal-dir)
-  (setq org-journal-file-format "%Y%m%d.org")
-  (setq org-journal-date-format "%A, %d %B %Y")
-
-  (setq org-journal-date-prefix "#+TITLE: ")
-  (setq org-journal-time-prefix "* ")
-  )
+;; (Disabled in favor of unified org-roam-dailies in Brain/Journal/)
+;; (use-package org-journal
+;;   :after (org)
+;;   :config
+;;   (setq org-journal-dir my-org-journal-dir))
 
 (use-package org-sticky-header
   :commands org-sticky-header-mode)
@@ -1233,7 +1201,8 @@ file which do not already have one."
   (defun me/org-roam-refresh-id-locations()
     "Refresh ID locations. Use when moving files around. Also, sync database."
     (interactive)
-    (org-id-update-id-locations (directory-files-recursively org-roam-directory ".org$\\|.org.gpg$")))
+    (org-id-update-id-locations (directory-files-recursively org-roam-directory ".org$\\|.org.gpg$"))
+    (org-roam-db-sync))
 
   (defun me/org-roam-node-insert-immediate (arg &rest args)
     "Insert node immediatly without prompting for input."
@@ -1250,21 +1219,30 @@ file which do not already have one."
   :custom
   (org-roam-directory my-org-roam-directory)
 
+  ;; Exclude TODO/DONE sub-headlines and :DO_NOT_ORG_ROAM: from polluting node-find
+  (org-roam-db-node-include-function
+   (lambda ()
+     (and (not (member "DO_NOT_ORG_ROAM" (org-get-tags)))
+          (not (and (org-current-level)
+                    (org-get-todo-state))))))
+
   ;; dailies
   (org-roam-dailies-directory "Journal/")
   (org-roam-dailies-capture-templates
    '(("d" "default" entry
       "* %?"
       :target (file+head "%<%Y-%m-%d>.org"
-                         "#+title: %<%Y-%m-%d>\n"))))
+                         "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
 
   (org-roam-completion-everywhere t)
 
   (org-roam-capture-templates my-org-roam-capture-templates)
-  (org-roam-node-display-template (concat "${type:15} ${title:*} " (propertize "${tags:45}" 'face 'org-tag)))
+  (org-roam-node-display-template (concat "${type:16} ${title:*} " (propertize "${tags:45}" 'face 'org-tag)))
   :bind (("C-c n l" . org-roam-buffer-toggle)
 	       ("C-c n f" . org-roam-node-find)
 	       ("C-c n i" . org-roam-node-insert)
+	       ("C-c n d" . org-roam-dailies-goto-today)
+	       ("C-c n j" . org-roam-dailies-capture-today)
 	       :map org-mode-map
 	       ("C-M-i"    . completion-at-point))
   :config
@@ -1282,11 +1260,20 @@ file which do not already have one."
 
 (use-package citar-org-roam
   :after (citar org-roam)
-  :defer t
+  :demand t
+  :preface
+  (defun my/citar-org-roam-subdir-advice (orig-fn citekey entry)
+    "Route `game:' citekeys to `Brain/Games' and all others to `citar-org-roam-subdir'."
+    (let ((citar-org-roam-subdir (if (string-prefix-p "game:" citekey)
+                                     "Games"
+                                   citar-org-roam-subdir)))
+      (funcall orig-fn citekey entry)))
   :custom
   (citar-org-roam-subdir "BibliographyNotes")
+  (citar-org-roam-note-title-template "${author editor} :: ${title}")
   (citar-org-roam-capture-template-key "n")
   :config
+  (advice-add 'citar-org-roam--create-capture-note :around #'my/citar-org-roam-subdir-advice)
   (citar-org-roam-mode)
   )
 

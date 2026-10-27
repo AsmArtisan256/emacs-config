@@ -75,7 +75,7 @@
   )
 
 (use-package cape
-  :after (corfu tempel)
+  :after corfu
   :demand t
   :bind (("C-c . p" . completion-at-point)
 	       ("C-c . t" . complete-tag)

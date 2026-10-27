@@ -5,14 +5,17 @@
   :bind
   ([remap goto-line] . consult-goto-line)
   ([remap switch-to-buffer] . consult-buffer)
-
   ("C-c h" . consult-history)
   ("C-c m" . consult-mode-command)
   ("C-c k" . consult-kmacro)
   ("C-c /" . consult-ripgrep)
   :custom
   (consult-project-root-function #'projectile-project-root)
-  (consult-narrow-key "<"))
+  (consult-narrow-key "<")
+  :init
+  ;; Use Consult to select xref locations with live preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref))
 
 ;; kinda works like shit?
 (use-package consult-projectile

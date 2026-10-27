@@ -20,9 +20,19 @@
       tab-bar-new-button (propertize " + " 'help "Click to create a new tab")
       tab-bar-separator " ")
 
-;; Top margin & breathing room around frame
-(modify-all-frames-parameters '((internal-border-width . 8)))
+;; Frame margins & visible split dividers on all frames
+(modify-all-frames-parameters '((internal-border-width . 8)
+                                (right-divider-width . 3)
+                                (bottom-divider-width . 3)))
 (add-to-list 'default-frame-alist '(internal-border-width . 8))
+(add-to-list 'default-frame-alist '(right-divider-width . 3))
+(add-to-list 'default-frame-alist '(bottom-divider-width . 3))
+
+;; Visible separators / dividers between all window splits (both horizontal and vertical)
+(setq window-divider-default-places t
+      window-divider-default-bottom-width 3
+      window-divider-default-right-width 3)
+(window-divider-mode 1)
 
 ;; Compact font & sleek styling with borders for workspace bar
 (set-face-attribute 'tab-bar nil :height 0.8)

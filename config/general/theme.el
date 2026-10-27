@@ -100,8 +100,8 @@
 
   ;; Harmonious Everforest mode-line styling
   (custom-set-faces
-   '(mode-line ((t (:background "#202728" :foreground "#f4ead5" :box (:line-width 1 :color "#4a5655" :style nil)))))
-   '(mode-line-inactive ((t (:background "#151a1b" :foreground "#89968c" :box (:line-width 1 :color "#394445" :style nil)))))
+   '(mode-line ((t (:background "#202728" :foreground "#f4ead5" :box (:line-width 1 :color "#b7d88d" :style nil)))))
+   '(mode-line-inactive ((t (:background "#202728" :foreground "#89968c" :box (:line-width 1 :color "#8bcfc7" :style nil)))))
    '(mode-line-buffer-id ((t (:foreground "#b7d88d" :weight bold))))
    '(mode-line-emphasis ((t (:foreground "#b7d88d" :weight bold))))
    '(mood-line-status-neutral ((t (:foreground "#8bcfc7"))))
@@ -123,4 +123,20 @@
    '(git-gutter:modified ((t (:foreground "#8bcfc7" :weight bold))))
    '(git-gutter-fr:added ((t (:foreground "#b7d88d"))))
    '(git-gutter-fr:deleted ((t (:foreground "#f28a8f"))))
-   '(git-gutter-fr:modified ((t (:foreground "#8bcfc7"))))))
+   '(git-gutter-fr:modified ((t (:foreground "#8bcfc7"))))
+
+   ;; Compilation buffer Everforest styling
+   '(compilation-error ((t (:foreground "#f28a8f" :weight bold))))
+   '(compilation-warning ((t (:foreground "#e8ca7a" :weight bold))))
+   '(compilation-info ((t (:foreground "#93d9a6"))))
+   '(compilation-line-number ((t (:foreground "#89968c"))))
+   '(compilation-column-number ((t (:foreground "#89968c"))))
+   '(compilation-mode-line-fail ((t (:foreground "#f28a8f" :weight bold))))
+   '(compilation-mode-line-run ((t (:foreground "#e8ca7a" :weight bold))))
+   '(compilation-mode-line-exit ((t (:foreground "#b7d88d" :weight bold))))
+
+   ;; Window divider & vertical border split lines (Bright Everforest Accent)
+   '(vertical-border ((t (:foreground "#b7d88d" :background "#b7d88d"))))
+   '(window-divider ((t (:foreground "#b7d88d" :background "#b7d88d"))))
+   '(window-divider-first-pixel ((t (:foreground "#b7d88d" :background "#b7d88d"))))
+   '(window-divider-last-pixel ((t (:foreground "#b7d88d" :background "#b7d88d"))))))

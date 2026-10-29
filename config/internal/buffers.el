@@ -41,10 +41,7 @@ nil."
   (interactive)
   (condition-case nil
       (delete-window window)
-    (error (if (and tab-bar-mode
-                    (> (length (funcall tab-bar-tabs-function)) 1))
-               (tab-bar-close-tab)
-             (delete-frame)))))
+    (error (delete-frame))))
 
 (global-set-key [remap split-window-below] 'my/split-window-below)
 (global-set-key [remap split-window-right] 'my/split-window-right)

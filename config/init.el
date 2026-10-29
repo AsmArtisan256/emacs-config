@@ -58,9 +58,6 @@
 ;; modeline
 (load (xah-get-fullpath "third-party/modeline.el"))
 
-;; tabs
-(load (xah-get-fullpath "third-party/centaur-tabs.el"))
-
 ;; svg rounded tag badges
 (load (xah-get-fullpath "third-party/svg-tag-mode.el"))
 

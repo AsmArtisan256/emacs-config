@@ -101,6 +101,7 @@
   ;; Harmonious Everforest mode-line styling
   (custom-set-faces
    '(mode-line ((t (:background "#202728" :foreground "#f4ead5" :box (:line-width 1 :color "#b7d88d" :style nil)))))
+   '(mode-line-active ((t (:background "#202728" :foreground "#f4ead5" :box (:line-width 1 :color "#b7d88d" :style nil)))))
    '(mode-line-inactive ((t (:background "#202728" :foreground "#89968c" :box (:line-width 1 :color "#8bcfc7" :style nil)))))
    '(mode-line-buffer-id ((t (:foreground "#b7d88d" :weight bold))))
    '(mode-line-emphasis ((t (:foreground "#b7d88d" :weight bold))))

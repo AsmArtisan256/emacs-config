@@ -289,9 +289,6 @@
   (set-face-attribute 'org-cite nil :foreground "#93d9a6" :background "#202728")
   (set-face-attribute 'org-footnote nil :foreground "#8bcfc7" :slant 'italic)
 
-  (modify-all-frames-parameters
-   '((right-divider-width . 4)
-     (internal-border-width . 4)))
   ;; (dolist (face '(window-divider
   ;;		  window-divider-first-pixel
   ;;		  window-divider-last-pixel))
@@ -793,6 +790,7 @@
 			                       ("lua"    . lua-ts)
 			                       ("php"    . php)
 			                       ))
+  (advice-add 'org-src-get-lang-mode :filter-return #'major-mode-remap)
   )
 
 (use-package org-id
@@ -1033,7 +1031,6 @@ file which do not already have one."
 
 (use-package org-ref
   :after (org)
-  :demand t
   :config
   (setq org-ref-default-bibliography my-org-ref-default-bibliography)
   (setq org-ref-bibliography-notes my-org-ref-bibliography-notes)
@@ -1053,7 +1050,6 @@ file which do not already have one."
 
 (use-package bibtex
   :after (org org-ref)
-  :demand t
   :config
   (setq bibtex-completion-pdf-open-function
 	      (lambda (fpath)
@@ -1095,7 +1091,6 @@ file which do not already have one."
 ;; Citar citation management with embark & vertico/corfu
 (use-package citar
   :after (org all-the-icons)
-  :demand t
   :bind
   (("C-c b b" . citar-insert-citation)
    ("C-c b o" . citar-open-files)
@@ -1131,7 +1126,6 @@ file which do not already have one."
 
 (use-package citar-embark
   :after (citar embark)
-  :demand t
   :custom
   (citar-at-point-function 'embark-act)
   :hook (
@@ -1180,9 +1174,6 @@ file which do not already have one."
   :config
   (org-remark-global-tracking-mode t))
 
-(use-package oc-csl
-  :straight nil)
-
 ;; TODO: verify if actually needed, at all.
 ;; (Disabled in favor of unified org-roam-dailies in Brain/Journal/)
 ;; (use-package org-journal
@@ -1195,9 +1186,13 @@ file which do not already have one."
 
 (use-package org-roam
   :ensure t
-  :demand t
+  :commands (me/org-roam-refresh-id-locations
+             me/org-roam-node-insert-immediate
+             my/org-roam-add-this-file-to-org-roam)
   :init
   (setq org-roam-v2-ack t)
+  (with-eval-after-load 'org
+    (require 'org-roam))
   (defun me/org-roam-refresh-id-locations()
     "Refresh ID locations. Use when moving files around. Also, sync database."
     (interactive)
@@ -1260,7 +1255,6 @@ file which do not already have one."
 
 (use-package citar-org-roam
   :after (citar org-roam)
-  :demand t
   :preface
   (defun my/citar-org-roam-subdir-advice (orig-fn citekey entry)
     "Route `game:' citekeys to `Brain/Games' and all others to `citar-org-roam-subdir'."
@@ -1280,9 +1274,12 @@ file which do not already have one."
 (use-package org-download
   :after (org)
   :ensure t
-  :demand t
+  :commands (my/org-download-clipboard
+             org-download-clipboard
+             org-download-yank
+             org-download-screenshot)
   :hook
-  (dired-mode . org-download-enable)
+  ((org-mode dired-mode) . org-download-enable)
   :preface
   (defun my/org-download-clipboard ()
     "Sets image dir to the correct value and downloads the image."
@@ -1310,5 +1307,5 @@ file which do not already have one."
 (use-package org-noter
   :after (org)
   :ensure t
-  :demand t
+  :commands (org-noter)
   )

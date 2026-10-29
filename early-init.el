@@ -1,5 +1,9 @@
 ;;; -*- lexical-binding: t; -*-
 
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6
+      package-enable-at-startup nil)
+
 (defvar comp-deferred-compilation)
 (setq comp-deferred-compilation t)
 (setq native-comp-async-report-warnings-errors nil)
@@ -29,12 +33,7 @@
 
 ;; improve i/o
 (when (boundp 'read-process-output-max)
-  ;; 1MB in bytes, default 4096 bytes
-  (setq read-process-output-max 1048576))
-
-(add-function :after
-              after-focus-change-function
-              (lambda () (unless (frame-focus-state) (garbage-collect))))
+  (setq read-process-output-max 4194304))
 
 (setq frame-resize-pixelwise t ;; resize it properly for TWM
 

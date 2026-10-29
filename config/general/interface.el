@@ -4,7 +4,12 @@
       mouse-wheel-follow-mouse t
       pixel-scroll-precision-use-momentum t)
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 1
+              bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+
+(setq bidi-inhibit-bpa t
+      redisplay-skip-fontification-on-input t)
 
 ;; highlight the current line
 (global-hl-line-mode t)

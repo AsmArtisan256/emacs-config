@@ -2,7 +2,7 @@
 
 (use-package svg-lib
   :straight (svg-lib :type git :host github :repo "rougier/svg-lib")
-  :demand t
+  :defer t
   :config
   ;; True vector-centered text with guaranteed symmetric padding on both sides
   (defun svg-lib-text-tag (label &optional face-or-style &rest args)
@@ -56,7 +56,7 @@
 
 (use-package svg-tag-mode
   :straight (svg-tag-mode :type git :host github :repo "rougier/svg-tag-mode")
-  :after (org svg-lib)
+  :after org
   :hook (org-mode . svg-tag-mode)
   :config
   (setq svg-tag-tags

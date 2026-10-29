@@ -19,5 +19,9 @@
 (add-hook 'gdb-mode          'me/hide-trailing-whitespace)
 (add-hook 'help-mode         'me/hide-trailing-whitespace)
 
+(defun me/delete-trailing-whitespace-unless-apheleia ()
+  (unless (bound-and-true-p apheleia-mode)
+    (delete-trailing-whitespace)))
+
 ;; delete trailing whitespace before save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook #'me/delete-trailing-whitespace-unless-apheleia)

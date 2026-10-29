@@ -23,11 +23,13 @@
   :ensure t
   :defer t
   :bind (("C-; a"   . eglot-code-actions)
-	       ("C-; r n" . eglot-rename)
-	       ("C-c k"   . eldoc)
+	       ("C-; R"   . eglot-rename)
 	       ("C-; f"   . eglot-format)
 	       ("C-; e"   . flymake-show-diagnostics-buffer)
-	       ("C-; d"   . xref-find-definitions)
+	       ("C-; d"   . eglot-find-declaration)
+	       ("C-; D"   . xref-find-definitions)
+	       ("C-; i"   . eglot-find-implementation)
+	       ("C-; t"   . eglot-find-typeDefinition)
 	       ("C-; r"   . xref-find-references)
 	       ("C-; p"   . xref-go-back)
 	       ("C-; n"   . xref-go-forward)
@@ -37,7 +39,7 @@
 	       ("M-n"     . flymake-goto-next-error)
 	       ("M-p"     . flymake-goto-prev-error))
   :hook
-  (((c-mode c++-mode c-ts-mode c++-ts-mode python-mode zig-mode) . eglot-ensure))
+  (((c-mode c++-mode c-ts-mode c++-ts-mode python-mode python-ts-mode zig-mode) . eglot-ensure))
   :custom
   ;; disable events buffer - SO ANNOYING!!!1!
   (eglot-events-buffer-size 0)
@@ -51,8 +53,8 @@
   ;; performance boost
   (fset #'jsonrpc--log-event #'ignore)
 
-  (setq completion-category-overrides '((eglot (styles orderless))
-					                              (eglot-capf (styles orderless))))
+  (add-to-list 'completion-category-overrides '(eglot (styles orderless)))
+  (add-to-list 'completion-category-overrides '(eglot-capf (styles orderless)))
 
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
 
@@ -73,14 +75,15 @@
   (add-to-list 'eglot-server-programs
 	             '((c++-mode c-mode cc-mode c-ts-mode c++-ts-mode)
 		             "clangd"
-		             "-j=2"
+		             "-j=12"
+		             "--pch-storage=memory"
 		             "--background-index"
 		             "--clang-tidy"
 		             "--completion-style=bundled"
 		             "--header-insertion=never"
 		             "--header-insertion-decorators"))
 
-  (add-to-list 'eglot-server-programs '((python-mode) . ("ty" "server")))
+  (add-to-list 'eglot-server-programs '((python-mode python-ts-mode) . ("ty" "server")))
 
   (defun my/do-then-quit (&rest args)
     "Execute function and quit window."
@@ -115,8 +118,9 @@
 (use-package yasnippet
   :diminish yas-minor-mode
   :bind ("M-e" . yas-expand)
-  :hook (after-init . yas-global-mode)
+  :hook ((prog-mode org-mode text-mode) . yas-minor-mode)
   :config
+  (yas-reload-all)
   (setq hippie-expand-try-functions-list
         '(yas/hippie-try-expand
           try-complete-file-name-partially
@@ -127,7 +131,8 @@
           try-complete-lisp-symbol-partially
           try-complete-lisp-symbol)))
 
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :defer t)
 
 ;; Yasnippet Completion At Point Function
 (use-package yasnippet-capf

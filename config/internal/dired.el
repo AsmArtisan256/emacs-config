@@ -24,42 +24,44 @@
         cmd)
       (mapconcat #'expand-file-name file-list "\" \"")))))
 
-;; clean up dired buffers
-(setopt dired-kill-when-opening-new-dired-buffer t)
-;; use human-readable sizes in dired and other stuff
-(setopt dired-listing-switches "-alh --group-directories-first")
-;; recursive
-(setopt dired-recursive-copies 'always)
-(setopt dired-recursive-deletes 'always)
-;; guess default dir
-(setopt dired-dwim-target t)
+(with-eval-after-load 'dired
+  ;; clean up dired buffers
+  (setopt dired-kill-when-opening-new-dired-buffer t)
+  ;; use human-readable sizes in dired and other stuff
+  (setopt dired-listing-switches "-alh --group-directories-first")
+  ;; recursive
+  (setopt dired-recursive-copies 'always)
+  (setopt dired-recursive-deletes 'always)
+  ;; guess default dir
+  (setopt dired-dwim-target t)
 
-(setopt dired-omit-verbose nil)
-(setopt dired-dwim-target 'dired-dwim-target-next)
-(setopt dired-hide-details-hide-symlink-targets nil)
-(setopt dired-kill-when-opening-new-dired-buffer t)
-(setopt delete-by-moving-to-trash t)
+  (setopt dired-omit-verbose nil)
+  (setopt dired-dwim-target 'dired-dwim-target-next)
+  (setopt dired-hide-details-hide-symlink-targets nil)
+  (setopt dired-kill-when-opening-new-dired-buffer t)
+  (setopt delete-by-moving-to-trash t)
 
-;; file opening
-(setopt dired-guess-shell-alist-user
-        '(("\\.pdf\\'" "evince")
-          ("\\.\\(?:djvu\\|eps\\)\\'" "zathura")
-          ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" "sxiv")
-          ("\\.\\(?:xcf\\)\\'" "gimp")
-          ("\\.\\(?:mp4\\|mp3\\|mkv\\|avi\\|flv\\|ogv\\)\\(?:\\.part\\)?\\'"
-           "mpv")
-          ("\\.\\(?:html\\|svg\\)\\'" "firefox")
-          ))
+  ;; file opening
+  (setopt dired-guess-shell-alist-user
+          '(("\\.pdf\\'" "evince")
+            ("\\.\\(?:djvu\\|eps\\)\\'" "zathura")
+            ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" "sxiv")
+            ("\\.\\(?:xcf\\)\\'" "gimp")
+            ("\\.\\(?:mp4\\|mp3\\|mkv\\|avi\\|flv\\|ogv\\)\\(?:\\.part\\)?\\'"
+             "mpv")
+            ("\\.\\(?:html\\|svg\\)\\'" "firefox")
+            ))
 
-(define-key dired-mode-map "!" 'dired-do-async-shell-command)
-(define-key dired-mode-map "&" 'dired-start-process)
+  (define-key dired-mode-map "!" 'dired-do-async-shell-command)
+  (define-key dired-mode-map "&" 'dired-start-process))
 
 ;; async stuff
 (use-package async
   :ensure t
   :defer t
-  :custom
-  (dired-async-mode 1))
+  :init
+  (with-eval-after-load 'dired
+    (dired-async-mode 1)))
 
 ;; colors
 (use-package diredfl

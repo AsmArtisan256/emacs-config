@@ -1,7 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package projectile
-  :demand t
+  :defer 1
+  :bind-keymap ("C-c p" . projectile-command-map)
   :custom
   (projectile-completion-system 'default)
   (projectile-enable-caching t)

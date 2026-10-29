@@ -7,7 +7,7 @@
   ([remap switch-to-buffer] . consult-buffer)
   ("C-c h" . consult-history)
   ("C-c m" . consult-mode-command)
-  ("C-c k" . consult-kmacro)
+  ;; ("C-c k" . consult-kmacro)
   ("C-c /" . consult-ripgrep)
   :custom
   (consult-project-root-function #'projectile-project-root)
@@ -46,10 +46,6 @@
 (use-package consult-org-roam
   :ensure t
   :after (consult org-roam)
-  :init
-  (require 'consult-org-roam)
-  ;; Activate the minor mode
-  (consult-org-roam-mode 1)
   :custom
   ;; Use `ripgrep' for searching with `consult-org-roam-search'
   (consult-org-roam-grep-func #'consult-ripgrep)
@@ -59,6 +55,8 @@
   ;; in consult-buffer (and not down at the bottom)
   (consult-org-roam-buffer-after-buffers t)
   :config
+  ;; Activate the minor mode
+  (consult-org-roam-mode 1)
   ;; Eventually suppress previewing for certain functions
   (consult-customize
    consult-org-roam-forward-links

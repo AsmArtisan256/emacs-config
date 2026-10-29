@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package persistent-soft
-  :demand t)
+  :defer t)
 
 (use-package fontaine
   :config
@@ -63,9 +63,7 @@
   )
 
 (use-package unicode-fonts
-  :after (fontaine)
-  :demand t
-  :after persistent-soft
+  :defer 2
   :config
   (unicode-fonts-setup)
 

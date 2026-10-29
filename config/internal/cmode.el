@@ -34,14 +34,6 @@
 (use-package c-ts-mode
   :ensure nil
   :defer t
-  :init
-  ;; Automatically use c-ts-mode and c++-ts-mode if tree-sitter grammars are present
-  (when (and (fboundp 'treesit-available-p) (treesit-available-p))
-    (when (treesit-language-available-p 'c)
-      (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode)))
-    (when (treesit-language-available-p 'cpp)
-      (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
-      (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))))
   :bind (:map c-ts-base-mode-map
               ("<f12>" . compile)
               ("C-c o" . eglot-clangd-find-other-file)

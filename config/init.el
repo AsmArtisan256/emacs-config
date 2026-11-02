@@ -98,6 +98,7 @@
 
 ;; editing history
 (load (xah-get-fullpath "third-party/undo-fu-session.el"))
+(load (xah-get-fullpath "third-party/easysession.el"))
 
 ;; completion, info, snippets, etc
 ;; (load (xah-get-fullpath "third-party/tempel.el"))

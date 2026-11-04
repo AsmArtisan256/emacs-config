@@ -202,4 +202,22 @@
     (when (facep 'eldoc-box-border)
       (set-face-attribute 'eldoc-box-border nil :background "#cba6f7"))
     (advice-add 'eldoc-box--display :filter-args #'my/eldoc-box-enrich-c-type)
-    (advice-add 'eldoc-box-help-at-point :after #'my/eldoc-box-refresh-now)))
+    (advice-add 'eldoc-box-help-at-point :after #'my/eldoc-box-refresh-now)
+
+    ;; Easy keyboard escape from childframe without using mouse:
+    ;; 1. Pressing the keybinding again (C-c k / C-; k) while inside the box closes it
+    (defun my/eldoc-box-help-at-point-toggle (orig-fn &rest args)
+      "Close eldoc-box childframe if already focused inside it."
+      (if (and (bound-and-true-p eldoc-box--frame)
+               (eq (selected-frame) eldoc-box--frame))
+          (eldoc-box-quit-frame)
+        (apply orig-fn args)))
+    (advice-add 'eldoc-box-help-at-point :around #'my/eldoc-box-help-at-point-toggle)
+
+    ;; 2. In addition to 'q', allow C-g, ESC, and the shortcuts to exit the childframe
+    (advice-add 'eldoc-box-focus-frame :after
+                (lambda ()
+                  (local-set-key (kbd "C-g") #'eldoc-box-quit-frame)
+                  (local-set-key (kbd "<escape>") #'eldoc-box-quit-frame)
+                  (local-set-key (kbd "C-c k") #'eldoc-box-quit-frame)
+                  (local-set-key (kbd "C-; k") #'eldoc-box-quit-frame)))))

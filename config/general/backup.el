@@ -20,3 +20,10 @@
  kept-old-versions 2
  kept-new-versions 6
  )
+
+;; Never create backup copies for files >= 1MB to prevent saving freezes
+(setq backup-enable-predicate
+      (lambda (name)
+        (and (normal-backup-enable-predicate name)
+             (let ((size (file-attribute-size (file-attributes name))))
+               (or (null size) (< size (* 1 1024 1024)))))))

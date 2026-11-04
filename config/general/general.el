@@ -86,6 +86,65 @@
 (use-package so-long
   :hook (after-init . global-so-long-mode))
 
+;;
+;; Large file performance safeguards (>1MB)
+;;
+(defcustom my-large-file-size (* 1 1024 1024) ; 1MB
+  "File size threshold in bytes above which a buffer is considered large."
+  :type 'integer
+  :group 'files)
+
+;; Set warning threshold for VLF / Emacs
+(setq large-file-warning-threshold my-large-file-size)
+
+(defun my/buffer-large-p ()
+  "Return non-nil if current buffer exceeds `my-large-file-size'."
+  (and buffer-file-name (> (buffer-size) my-large-file-size)))
+
+;; Inhibit Eglot LSP from starting on large files
+(with-eval-after-load 'eglot
+  (defun my/eglot-ensure-skip-large (orig-fn &rest args)
+    "Do not automatically start Eglot LSP on large files (>1MB)."
+    (unless (my/buffer-large-p)
+      (apply orig-fn args)))
+  (advice-add 'eglot-ensure :around #'my/eglot-ensure-skip-large))
+
+(defun my/large-file-setup ()
+  "Disable heavy minor modes in large buffers (>1MB) to prevent freezing/stuttering."
+  (when (my/buffer-large-p)
+    ;; Prevent memory bloat and accidental heavy undo logs
+    (setq-local buffer-read-only t)
+    (buffer-disable-undo)
+
+    ;; Disable LSP if active
+    (when (bound-and-true-p eglot--managed-mode)
+      (ignore-errors (eglot-shutdown (eglot-current-server))))
+
+    ;; Disable heavy background checkers and tools
+    (when (fboundp 'flymake-mode) (flymake-mode -1))
+    (when (fboundp 'diff-hl-mode) (diff-hl-mode -1))
+    (when (fboundp 'apheleia-mode) (apheleia-mode -1))
+    (when (fboundp 'hl-todo-mode) (hl-todo-mode -1))
+    (when (fboundp 'syntax-subword-mode) (syntax-subword-mode -1))
+
+    ;; Disable syntax fontification and bracket matching
+    (font-lock-mode -1)
+    (setq-local show-paren-mode nil)
+    (setq-local electric-pair-mode nil)
+
+    ;; Disable auto-saving and auto-reverting for this buffer
+    (auto-save-mode -1)
+    (setq-local auto-revert-mode nil)
+
+    ;; Fast scrolling & bidi display optimization
+    (setq-local bidi-paragraph-direction 'left-to-right)
+    (setq-local bidi-inhibit-bpa t)
+    (setq-local fast-but-imprecise-scrolling t)
+
+    (message "Large file safeguard (>1MB): heavy features (LSP, linters, git-gutter, font-lock, undo) disabled.")))
+
+(add-hook 'find-file-hook #'my/large-file-setup)
+
 ;; save place
 (setq save-place-file "~/.config/emacs/saveplace")
 (save-place-mode 1)

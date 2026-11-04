@@ -69,6 +69,7 @@
 
 ;; scroll options
 (load (xah-get-fullpath "third-party/fast-scroll.el"))
+(load (xah-get-fullpath "third-party/vlf.el"))
 
 ;; expand region
 (load (xah-get-fullpath "third-party/expand-region.el"))

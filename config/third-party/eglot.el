@@ -91,7 +91,37 @@
       (apply (car args) (cdr args))
       (quit-window nil win)))
 
-  (advice-add #'xref-goto-xref :around #'my/do-then-quit))
+  (advice-add #'xref-goto-xref :around #'my/do-then-quit)
+
+  ;; Extract clean signature for echo area instead of clangd's "function foo" title
+  (defun my/eglot-extract-signature (info)
+    "Extract clean, single-line signature from hover markup INFO."
+    (when (stringp info)
+      (save-match-data
+        (when (string-match "```[A-Za-z0-9_+-]*\n\\(\\(?:[^\0]\\)*?\\)\n```" info)
+          (let* ((raw (match-string 1 info))
+                 ;; Strip trailing comment sections (e.g. "// Expands to\n...")
+                 (decl (car (split-string raw "\n[ \t]*//")))
+                 ;; Collapse newlines and surrounding indentation into a single line
+                 (one-line (string-trim (replace-regexp-in-string "\n[ \t]*" " " decl))))
+            (setq one-line (replace-regexp-in-string "( " "(" one-line))
+            (setq one-line (replace-regexp-in-string " )" ")" one-line))
+            ;; Ensure characters aren't invisible in echo area
+            (remove-text-properties 0 (length one-line) '(invisible nil) one-line)
+            (unless (string-empty-p one-line)
+              one-line))))))
+
+  (defun my/eglot-hover-signature-advice (orig-fn cb-fn &rest args)
+    "Advise `eglot-hover-eldoc-function' to display function signature in the echo area."
+    (let ((wrapped-cb
+           (lambda (info &rest plist)
+             (let ((sig (my/eglot-extract-signature info)))
+               (if sig
+                   (apply cb-fn info (plist-put (copy-sequence plist) :echo sig))
+                 (apply cb-fn info plist))))))
+      (apply orig-fn wrapped-cb args)))
+
+  (advice-add #'eglot-hover-eldoc-function :around #'my/eglot-hover-signature-advice))
 
 ;; for C/C++ definitions
 (use-package eglot-inactive-regions

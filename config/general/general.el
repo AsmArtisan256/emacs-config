@@ -77,7 +77,19 @@
         show-paren-when-point-inside-paren t))
 
 ;; autopair
+(require 'elec-pair)
 (electric-pair-mode 1)
+
+;; Disable automatic pairing in the minibuffer / echo area (e.g. search prompts like ctrlf, consult, find-file)
+(setq electric-pair-inhibit-predicate
+      (lambda (char)
+        (if (minibufferp)
+            t
+          (electric-pair-default-inhibit char))))
+
+(add-hook 'minibuffer-setup-hook
+          (lambda ()
+            (setq-local electric-pair-mode nil)))
 
 ;; overwrite text when selected
 (delete-selection-mode 1)

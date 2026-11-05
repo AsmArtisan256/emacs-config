@@ -1,8 +1,18 @@
 ;; -*- lexical-binding: t; -*-
+;; High-performance, instant mouse wheel scrolling (no animations/interpolation)
 (setq scroll-conservatively 101
-      scroll-preserve-screen-position 1
-      mouse-wheel-follow-mouse t
-      pixel-scroll-precision-use-momentum t)
+      scroll-preserve-screen-position t
+      scroll-margin 0
+      auto-window-vscroll nil)
+
+;; Mouse wheel settings
+(setq mouse-wheel-follow-mouse t
+      mouse-wheel-progressive-speed nil  ; No acceleration curve spikes: 1 notch = predictable instant scroll
+      mouse-wheel-tilt-scroll t          ; Enable horizontal scrolling on wheel tilt
+      mouse-wheel-scroll-amount '(2 ((shift) . hscroll))) ; Crisp 2 lines per notch
+
+(when (bound-and-true-p pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode -1))
 
 (setq-default line-spacing 1
               bidi-display-reordering 'left-to-right

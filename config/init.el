@@ -91,7 +91,7 @@
 
 ;; editing
 (load (xah-get-fullpath "third-party/hungry-delete.el"))
-;; (load (xah-get-fullpath "third-party/multiple-cursors.el"))
+(load (xah-get-fullpath "third-party/multiple-cursors.el"))
 
 (load (xah-get-fullpath "third-party/avy.el"))
 

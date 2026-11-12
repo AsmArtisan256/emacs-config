@@ -8,4 +8,7 @@
   (treesit-auto-install-grammar 'ask)
   (treesit-font-lock-level 4)
   :config
-  (add-to-list 'major-mode-remap-alist '(json-mode . json-ts-mode)))
+  (add-to-list 'major-mode-remap-alist '(json-mode . json-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode)))

@@ -9,6 +9,9 @@
   ("C-c m" . consult-mode-command)
   ;; ("C-c k" . consult-kmacro)
   ("C-c /" . consult-ripgrep)
+  ("C-c s" . consult-line)
+  ("C-c i" . consult-imenu)
+  ("C-c !" . consult-flymake)
   :custom
   (consult-project-root-function #'projectile-project-root)
   (consult-narrow-key "<")

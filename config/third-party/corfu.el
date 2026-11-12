@@ -48,6 +48,7 @@
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)
+  (corfu-history-mode 1)
   )
 
 (use-package kind-icon

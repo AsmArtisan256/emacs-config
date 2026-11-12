@@ -123,6 +123,9 @@
 ;; formatting
 (load (xah-get-fullpath "third-party/apheleia.el"))
 
+;; disassembly / compiler explorer
+(load (xah-get-fullpath "third-party/rmsbolt.el"))
+
 ;; git
 (load (xah-get-fullpath "third-party/diff-hl.el"))
 (load (xah-get-fullpath "third-party/magit.el"))

@@ -7,5 +7,6 @@
   (dired-mode . diff-hl-dired-mode-unless-remote)
   :config
   (global-diff-hl-mode 1)
+  (diff-hl-flydiff-mode 1)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   )
